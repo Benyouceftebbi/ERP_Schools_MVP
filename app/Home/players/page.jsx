@@ -187,7 +187,7 @@ const ChatScreen = ({coachDetails}) => {
           className="w-full p-2 border border-gray-300 rounded"
           rows="3"
         />
-        <button onClick={sendMessage} className="ml-2 px-4 py-2 bg-blue-500 text-white rounded">Send</button>
+        <button onClick={sendMessage} className="ml-2 px-4 py-2 bg-blue-500 text-white rounded">إرسال</button>
       </div>
     </div>
   </div>
@@ -236,216 +236,198 @@ useEffect(()=>{
     return (          
       
       <div className='p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full relative' style={{ width: 'calc(100% - 24px)' }}>
-          <h3 className="text-lg font-bold ml-4 mb-2">Memberships</h3>
+          <h3 className="text-lg font-bold ml-4 mb-2">عضوية</h3>
  
   {!showModal && (<button
-  className="absolute top-2 right-2 button-white px-2 py-2 rounded" 
+  className="absolute top-2 left-2 button-white px-2 py-2 rounded" 
     onClick={() => setShowModal(true)}
   >
-    Add Membership
+إضافة عضوية
   </button>)
   }
   
             <table className="w-full divide-y divide-gray-200 ">
             <thead className="bg-gray-50">
               <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                  name
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                type
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                  quantity
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                 status
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                 Total Amount
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                 payment
-                </th>
-               
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                  start Date
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                  Expiry Date
-                </th>
+              <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الاسم
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  النوع
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الكمية
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الحالة
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  المبلغ الإجمالي
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الدفع
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  تاريخ البدء
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  تاريخ الانتهاء
+</th>
             
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-            {selectedMemberships.map((participant,index) => (
-                <tr key={participant.id}>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{participant.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{participant.frequency}</td>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{participant.quantity}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center ">  
-           <select
-      name="status"
-      value={participant.status}
-      onChange={(e) => {
-        const { name, value } = e.target;
-        setSelectedMemberships((prev) =>
-          prev.map((part, idx) =>
-            idx === index ? { ...part, [name]: value } : part
-          )
-        );
-      }}
-      id='cssassas'
-      className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(participant.status)}`}
-    >
-      <option value="">Status</option>
-      <option value="paid">Paid</option>
-      <option value="not paud">Not Paid</option>
-  
-    </select></td>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{participant.quantity*participant.price}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center ">  
-           <select
-      name="payment"
-      value={participant.payment}
-      onChange={(e) => {
-        const { name, value } = e.target;
-        setSelectedMemberships((prev) =>
-          prev.map((part, idx) =>
-            idx === index ? { ...part, [name]: value } : part
-          )
-        );
-      }}
-      id='cssassas'
-      className={`rounded-lg w-full px-3 py-2 border`}
-      disabled={!participant.status==="paid"}
-    >
-      <option value="">unknown</option>
-      <option value="bank">Bank</option>
-      <option value="cash">Cash</option>
-  
-  
-    </select></td>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-         
-                {participant.startDate.toDate ? participant.startDate.toDate().toLocaleDateString() : participant.startDate.toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>     {participant.endDate.toDate ? participant.endDate.toDate().toLocaleDateString() : participant.endDate.toLocaleDateString()}</td>
-         
-
-                </tr>
-              ))}
-            </tbody>
-            {showModal && (
-      <tr className="">
-        < td className="px-3 py-4 whitespace-nowrap">
-     <select
-      className="px-3 py-2 border rounded-md w-full sm:w-auto"
-      style={{ width: '70px' }} 
-      value={newMembership.name}
-      onChange={(e) => { 
-        const selectedParticipant = JSON.parse(e.target.value);
-        console.log(newMembership);
-        setNewMembership((prev) => ({
-          ...prev,
-          name: selectedParticipant.name,
-          id: selectedParticipant.id,
-       frequency:selectedParticipant.frequency,
-       price:parseInt(selectedParticipant.price,10)
-        }));
-      }}
-  
-  
-    >
-            <option value="">Select Membership</option>
-  {memberships.map((participant)=>(
-      
-  <option value={JSON.stringify(participant)}>{participant.name}</option>
-  
-  ))}
-    
-    </select>
-    </ td>
-    < td className="px-3 py-4 whitespace-nowrap">{newMembership.frequency}</td>
-    < td className="px-3 py-4 whitespace-nowrap"> 
-     <input
-      type="number"
-      placeholder="1"
-      name="quantity"
-      className="px-3 py-2 border rounded-md w-full sm:w-auto"
-      style={{ width: '70px' }} 
-      onChange={(e) => { 
-        setNewMembership((prev) => ({
-          ...prev,
-          [e.target.name]:e.target.value
-        }));
-      }}
-  
-      value={newMembership.quantity}
-    /></ td>
-    <td className="px-6 py-4 whitespace-nowrap text-center ">  
-           <select
-      name="status"
-      onChange={(e) => { 
-        setNewMembership((prev) => ({
-          ...prev,
-          [e.target.name]:e.target.value
-        }));
-      }}
-      id='cssassas'
-      className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(newMembership.status)}`}
-    >
-      <option value="">Status</option>
-      <option value="paid">Paid</option>
-      <option value="not paud">Not Paid</option>
-  
-    </select></td>
-    <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{newMembership.price*newMembership.quantity}</td>
-    < td className="px-3 py-4 whitespace-nowrap">
+  {selectedMemberships.map((participant, index) => (
+    <tr key={participant.id}>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>اسم العضو</td>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>التكرار</td>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>الكمية</td>
+      <td className="px-6 py-4 whitespace-nowrap text-center ">
         <select
-    className="px-3 py-2 border rounded-md w-full sm:w-auto"
-    style={{ width: '70px' }} 
-  
-    name='payment'
-    onChange={(e) => { 
-      setNewMembership((prev) => ({
-        ...prev,
-        [e.target.name]:e.target.value
-      }));
-    }}
-  
-      disabled={newMembership.status!='paid'}
-    >
-      <option value="" disabled hidden>Select Payemnt</option>
-      <option value="bank">Bank</option>
-      <option value="cash">Cash</option>
-      {/* Add more options as needed */}
-    </select></ td>
+          name="status"
+          value={participant.status}
+          onChange={(e) => {
+            const { name, value } = e.target;
+            setSelectedMemberships((prev) =>
+              prev.map((part, idx) =>
+                idx === index ? { ...part, [name]: value } : part
+              )
+            );
+          }}
+          id='cssassas'
+          className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(participant.status)}`}
+        >
+          <option value="">الحالة</option>
+          <option value="paid">مدفوعة</option>
+          <option value="not paud">غير مدفوعة</option>
+        </select>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>المبلغ الإجمالي</td>
+      <td className="px-6 py-4 whitespace-nowrap text-center ">
+        <select
+          name="payment"
+          value={participant.payment}
+          onChange={(e) => {
+            const { name, value } = e.target;
+            setSelectedMemberships((prev) =>
+              prev.map((part, idx) =>
+                idx === index ? { ...part, [name]: value } : part
+              )
+            );
+          }}
+          id='cssassas'
+          className={`rounded-lg w-full px-3 py-2 border`}
+          disabled={!participant.status === "paid"}
+        >
+          <option value="">غير معروف</option>
+          <option value="bank">بنك</option>
+          <option value="cash">نقدي</option>
+        </select>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>تاريخ البدء</td>
+      <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>تاريخ الانتهاء</td>
+    </tr>
+  ))}
+</tbody>
+            {showModal && (
+    <tr className="">
     <td className="px-3 py-4 whitespace-nowrap">
-          <DatePicker
-          id="date"
-          selected={newMembership.startDate}
-          onChange={(date) => setNewMembership((prev) => ({ ...prev, startDate: date,}))} // Update the 'date' field in newPlayerDetails
-      
-          dateFormat="dd-MM-yyyy" // Specify the date format
-          className="rounded-lg w-full px-3 py-2 border-none"
-          
-          placeholderText="Date"
-        />
-          </td>
-          <td className="px-3 py-4 whitespace-nowrap">
-          <DatePicker
-          id="date"
-          selected={newMembership.endDate}
-// Update the 'date' field in newPlayerDetails
-      disabled={true}
-          dateFormat="dd-MM-yyyy" // Specify the date format
-          className="rounded-lg w-full px-3 py-2 border-none"
-          
-          placeholderText="Date"
-        />
-          </td>
-          
+      <select
+        className="px-3 py-2 border rounded-md w-full sm:w-auto"
+        style={{ width: '70px' }} 
+        value={newMembership.name}
+        onChange={(e) => { 
+          const selectedParticipant = JSON.parse(e.target.value);
+          console.log(newMembership);
+          setNewMembership((prev) => ({
+            ...prev,
+            name: selectedParticipant.name,
+            id: selectedParticipant.id,
+            frequency: selectedParticipant.frequency,
+            price: parseInt(selectedParticipant.price, 10)
+          }));
+        }}
+      >
+        <option value="">اختر العضوية</option>
+        {memberships.map((participant) => (
+          <option value={JSON.stringify(participant)}>{participant.name}</option>
+        ))}
+      </select>
+    </td>
+    <td className="px-3 py-4 whitespace-nowrap">{newMembership.frequency}</td>
+    <td className="px-3 py-4 whitespace-nowrap"> 
+      <input
+        type="number"
+        placeholder="1"
+        name="quantity"
+        className="px-3 py-2 border rounded-md w-full sm:w-auto"
+        style={{ width: '70px' }} 
+        onChange={(e) => { 
+          setNewMembership((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+          }));
+        }}
+        value={newMembership.quantity}
+      />
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-center">  
+      <select
+        name="status"
+        onChange={(e) => { 
+          setNewMembership((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+          }));
+        }}
+        id='cssassas'
+        className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(newMembership.status)}`}
+      >
+        <option value="">الحالة</option>
+        <option value="paid">مدفوعة</option>
+        <option value="not paud">غير مدفوعة</option>
+      </select>
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>{newMembership.price * newMembership.quantity}</td>
+    <td className="px-3 py-4 whitespace-nowrap">
+      <select
+        className="px-3 py-2 border rounded-md w-full sm:w-auto"
+        style={{ width: '70px' }} 
+        name='payment'
+        onChange={(e) => { 
+          setNewMembership((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+          }));
+        }}
+        disabled={newMembership.status !== 'paid'}
+      >
+        <option value="" disabled hidden>اختر الدفع</option>
+        <option value="bank">بنك</option>
+        <option value="cash">نقدي</option>
+        {/* Add more options as needed */}
+      </select>
+    </td>
+    <td className="px-3 py-4 whitespace-nowrap">
+      <DatePicker
+        id="date"
+        selected={newMembership.startDate}
+        onChange={(date) => setNewMembership((prev) => ({ ...prev, startDate: date }))}
+        dateFormat="dd-MM-yyyy"
+        className="rounded-lg w-full px-3 py-2 border-none"
+        placeholderText="التاريخ"
+      />
+    </td>
+    <td className="px-3 py-4 whitespace-nowrap">
+      <DatePicker
+        id="date"
+        selected={newMembership.endDate}
+        disabled={true}
+        dateFormat="dd-MM-yyyy"
+        className="rounded-lg w-full px-3 py-2 border-none"
+        placeholderText="التاريخ"
+      />
+    </td>
   </tr>
   )}        </table>   
      {showModal && (
@@ -453,9 +435,9 @@ useEffect(()=>{
     <div className='flex flex-row'>
      <button
      onClick={handlesave}
-  className="button-blue mr-2"
+  className="button-blue ml-2"
   >
-  Save
+حفظ
   </button>
   <button
   onClick={() => {
@@ -464,7 +446,7 @@ useEffect(()=>{
   }}
   className="button-red"
 >
-  Cancel
+إلغاء
 </button>
   
   </div>
@@ -686,7 +668,7 @@ if(membership.status==="paid"){
   return (
     <div className={`flex bg-white p-1 mb-1 rounded-lg items-center border-b border-gray-400`}>
 <div className="fixed inset-0 flex bg-gray-600 bg-opacity-50 justify-end items-center h-full overflow-auto" style={{ height: 'calc(100% )' }}>
-<button onClick={toggleDetailsmake} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+<button onClick={toggleDetailsmake} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
@@ -696,20 +678,20 @@ if(membership.status==="paid"){
 <div className="w-3/6 h-full bg-white border rounded-t flex flex-col justify-start items-start">
 <div className='flex'>
  
- <h2 className="text-xl font-bold ml-4 mt-4 mb-6">New Client</h2>
+ <h2 className="text-xl font-bold ml-4 mt-4 mb-6 pr-4">طالب جديد</h2>
  <div className='ml-72'/>
  </div>
 
 
    
-          <div className="bg-white w-full mt-10">
-              <h1 className="text-lg font-bold ml-4 mb-2">General Information</h1>
+          <div className="bg-white w-full mt-10 pr-4">
+              <h1 className="text-lg font-bold ml-4 mb-2">معلومات عامة</h1>
 
               <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
 
 <div className="ml-4 grid grid-cols-3 gap-4">
               <div className="">
-                <strong className="block mb-1">Name:</strong>
+                <strong className="block mb-1">:الاسم</strong>
                 <input
           className="rounded-lg"
           type="text"
@@ -721,12 +703,12 @@ if(membership.status==="paid"){
       
        
               <div className="">
-                <strong className="">Email:</strong>
+                <strong className="">:لبريد الإلكتروني</strong>
                 <input type="email" name="Email"  onChange={handleInputChange}  className="rounded-lg" />
               </div>
               
               <div className="">
-          <strong>Date of Birth</strong> 
+          <strong>تاريخ الميلاد</strong> 
           <input
           className="rounded-lg"
           type="text"
@@ -749,7 +731,7 @@ if(membership.status==="paid"){
         </div>
           
               <div className="">
-                <strong className="block mb-1">Phone Number:</strong>
+                <strong className="block mb-1">:قم الهاتف</strong>
                 <input type="tel"  onChange={handleInputChange} name='phone'  className="rounded-lg" />
               </div>
       
@@ -854,7 +836,7 @@ if(membership.status==="paid"){
 
 <ParticipantsHorizontalScroll memberships={memberships} setCoachDetails={setCoachDetails}/>
 
-  <h3 className="text-lg font-bold ml-4 mb-2">Documents</h3>
+  <h3 className="text-lg font-bold ml-4 mb-2">المستندات</h3>
   <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full"style={{ width: 'calc(100% - 24px)' }}>
   {documents.length===0?(
     
@@ -912,7 +894,7 @@ if(membership.status==="paid"){
           onClick={createAccountAndSaveData}
 
         >
-          Add Coach
+إضافة طالب
         </button>
           </div>
 
@@ -1161,7 +1143,7 @@ await updateDoc(docRef,{
 
 {showDetailsedit && (
 <div className="fixed inset-0 flex bg-gray-600 bg-opacity-50 justify-end items-center h-full overflow-auto" style={{ height: 'calc(100% )' }}>
-<button onClick={toggleDetailsedit} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+<button onClick={toggleDetailsedit} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
@@ -1171,10 +1153,10 @@ await updateDoc(docRef,{
 <div className="w-3/6 h-full bg-white border rounded-t flex flex-col justify-start items-start">
 <div className='flex'>
  
- <h2 className="text-xl font-bold ml-4 mt-4 mb-6">Client Details</h2>
+ <h2 className="text-xl font-bold ml-4 mt-4 mb-6">تفاصيل الطالب</h2>
  <div className='ml-72'/>
  <div className="mt-4" >
-   <strong className='ml-2 mt-4 mb-6'>Client ID</strong> 
+   <strong className='ml-2 mt-4 mb-6'>معرف الطالب</strong> 
    <input className="rounded-lg ml-5" type="text" readOnly value={coachDetails.id} />
  </div>
  </div>
@@ -1189,7 +1171,7 @@ await updateDoc(docRef,{
   }`}
   onClick={() => setActiveTab('details')}
 >
-  Details
+التفاصيل
 </button>
 <button
   className={`px-4 py-2 text-xl font-bold ${
@@ -1199,7 +1181,7 @@ await updateDoc(docRef,{
   }`}
   onClick={() => setActiveTab('Performance')}
 >
- Performance
+الأداء
 </button>
 
 <button
@@ -1210,65 +1192,62 @@ await updateDoc(docRef,{
   }`}
   onClick={() => setActiveTab('Chat')}
 >
-  Chat
+دردشة
 </button>
 </div>
 
 </div>
 
           {activeTab === 'details' && ( 
-          <div className="bg-white w-full mt-10">
-              <h1 className="text-lg font-bold ml-4 mb-2">Client Details</h1>
+          <div className="bg-white w-full mt-10 pr-4">
+              <h1 className="text-lg font-bold ml-4 mb-2">تفاصيل الطالب</h1>
 
               <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
 
 <div className="ml-4 grid grid-cols-3 gap-4">
-              <div className="">
-                <strong className="block mb-1">Name:</strong>
-                <input
-          className="rounded-lg"
-          type="text"
-          name="nameandsurname"
-          value={coachDetails.nameandsurname}
-          onChange={handleInputChange}
-        />
-              </div>
-      
-        
-              <div className="">
-                <strong className="">Email:</strong>
-                <input type="email" name="Email" value={coachDetails.Email} onChange={handleInputChange}  className="rounded-lg" />
-              </div>
-              
-            
-              <div className="">
-          <strong>Date of Birth</strong> 
-          <input
-          className="rounded-lg"
-          type="text"
-          name="birthDay"
-          value={coachDetails.birthDay?.nanoseconds?formatTimestampToDate(coachDetails.birthDay):coachDetails?.birthDay}
-         onClick={handleTextClick} // Convert string back to array on change
-        />
-   
-      {showCalendar && (
-        <DateTimePicker
-          value={coachDetails.birthDay?.nanoseconds?coachDetails?.birthDay.toDate():coachDetails?.birthDay}
-          onChange={(date) => {
-            setCoachDetails({ ...coachDetails, birthDay: date })
-            handleCalendarClose(); // Close calendar after date selection
-          }}
-          calendarIcon={null} // Remove default calendar icon
-     
-        />
-      )}
-        </div>
-          
-              <div className="">
-                <strong className="block mb-1">Phone Number:</strong>
-                <input type="tel" value={coachDetails.phone} onChange={handleInputChange} name='phone'  className="rounded-lg" />
-              </div>
-            </div>
+<div className="">
+  <strong className="block mb-1">الاسم:</strong>
+  <input
+    className="rounded-lg"
+    type="text"
+    name="nameandsurname"
+    value={coachDetails.nameandsurname}
+    onChange={handleInputChange}
+  />
+</div>
+
+<div className="">
+  <strong className="">البريد الإلكتروني:</strong>
+  <input type="email" name="Email" value={coachDetails.Email} onChange={handleInputChange} className="rounded-lg" />
+</div>
+
+<div className="">
+  <strong>تاريخ الميلاد:</strong>
+  <input
+    className="rounded-lg"
+    type="text"
+    name="birthDay"
+    value={coachDetails.birthDay?.nanoseconds ? formatTimestampToDate(coachDetails.birthDay) : coachDetails?.birthDay}
+    onClick={handleTextClick}
+  />
+
+  {showCalendar && (
+    <DateTimePicker
+      value={coachDetails.birthDay?.nanoseconds ? coachDetails?.birthDay.toDate() : coachDetails?.birthDay}
+      onChange={(date) => {
+        setCoachDetails({ ...coachDetails, birthDay: date });
+        handleCalendarClose();
+      }}
+      calendarIcon={null}
+    />
+  )}
+</div>
+
+<div className="">
+  <strong className="block mb-1">رقم الهاتف:</strong>
+  <input type="tel" value={coachDetails.phone} onChange={handleInputChange} name='phone' className="rounded-lg" />
+</div>
+</div>
 
 
     
@@ -1307,7 +1286,7 @@ await updateDoc(docRef,{
   </div> */}
   <ParticipantsHorizontalScroll memberships={memberships} setCoachDetails={setCoachDetails} traineeMemberships={coachDetails.memberships}/>
 
-  <h3 className="text-lg font-bold ml-4 mb-2">Documents</h3>
+  <h3 className="text-lg font-bold ml-4 mb-2">المستندات</h3>
     <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full"style={{ width: 'calc(100% - 24px)' }}>
           
     {coach?.documents?.length === 0 ? (
@@ -1354,7 +1333,7 @@ await updateDoc(docRef,{
             onClick={()=>  window.open(cls.pdf, '_blank')}
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 self-end"
               >
-                Open
+    فتح
               </button>
             </div>
           </div>
@@ -1363,7 +1342,7 @@ await updateDoc(docRef,{
 
       </div>
       <label htmlFor="file-upload" className="cursor-pointer">
-      <p className="text-lg text-gray-500 mt-4">Upload {coachDetails.nameandsurname}'s documents</p>
+      <p className="text-lg text-gray-500 mt-4">تحميل مستندات  {coachDetails.nameandsurname}, فتح</p>
       <input
                 id="file-upload"
                 type="file"
@@ -1383,7 +1362,7 @@ await updateDoc(docRef,{
       onClick={handleSubmit}
       disabled={isSubmitting}
     >
-      Submit Changes
+     إرسال التغييرات
     </button>
           </div>)}
           {activeTab === 'Performance' && ( 
@@ -1547,31 +1526,31 @@ const {memberships}=useAuth()
 
   return (
     <div className="container mx-auto  h-full mt-10 ">
-           <h2 className="text-3xl font-bold mb-10 ml-2">Clients</h2>
+           <h2 className="text-3xl font-bold mb-10 ml-2"> الطلاب</h2>
            <div className="h-full flex flex-col relative bg-white border rounded-lg">
 <div className="flex mb-4 p-3 bg-white  mt-5 items-center flex-col  ">
-  <h2 className="text-xl font-semibold ">Status</h2>
+  <h2 className="text-xl font-semibold ">الحالة</h2>
   
   <div className="flex w-full items-center justify-between mt-10  p-3 ">
   {/* Medium-sized divs */}
   <div className="flex flex-col items-center mr-4 w-full h-full border text-xs font-medium text-gray-500 uppercase tracking-wider rounded-lg p-2">
     <Users2/> 
-    <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">Total Clients</div>
+    <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">إجمالي الطلاب</div>
     <div>{coaches.length}</div>
   </div>
   <div className="flex flex-col items-center mr-4 w-full h-full border text-xs font-medium text-gray-500 uppercase tracking-wider rounded-lg p-2">
     <School className="text-xs font-medium text-gray-500 uppercase tracking-wider"/> 
-    <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">total Classes</div>
+    <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">إجمالي الصفوف</div>
     <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{totalClasses}</div> {/* Assuming revenue is defined somewhere */}
   </div>
   <div className="flex flex-col items-center mr-4 w-full h-full border text-xs font-medium text-gray-500 uppercase tracking-wider rounded-lg p-2">
     <UserCheck2/> 
-    <div className="font-semibold">Active Clients</div>
+    <div className="font-semibold">الطلاب النشطاء</div>
     <div>{coaches.filter(coach => coach.status === 'active').length}</div> {/* Assuming attendance is defined somewhere */}
   </div>
   <div className="flex flex-col items-center w-full h-full border text-xs font-medium text-gray-500 uppercase tracking-wider rounded-lg p-2 ">
   <Star /> 
-    <div className="font-semibold ">Average Satisfaction rate</div>
+    <div className="font-semibold ">معدل رضا الطلاب</div>
     <div>{5/5}</div> {/* Assuming expense is defined somewhere */}
   </div>
 </div>
@@ -1601,7 +1580,7 @@ const {memberships}=useAuth()
           onClick={toggleDetailsmake}
         >
           <span className="mr-2">+</span>
-          <span>Add New</span>
+          <span>إضافة جديدة</span>
         </button>
       </div>
 
@@ -1613,12 +1592,12 @@ const {memberships}=useAuth()
       {/* Coach list */}
       <div className="flex mb-2 bg-gray-100 h-10 items-center rounded-lg mr-5 ml-5">
         <div className="w-1/4 pr-4 font-semibold"></div>
-        <div className="w-3/4 text-xs font-medium text-gray-500 uppercase tracking-wider">Trainee Name</div>
+        <div className="w-3/4 text-xs font-medium text-gray-500 uppercase tracking-wider">اسم الطلاب</div>
 
-        <div className="w-3/4 text-xs font-medium text-gray-500 uppercase tracking-wider">Email</div>
-        <div className="w-2/4 pr-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Status</div>
-        <div className="w-2/5 text-xs font-medium text-gray-500 uppercase tracking-wider">Phone Number</div>
-        <div className="w-1/5 text-xs font-medium text-gray-500 uppercase tracking-wider">Action</div>
+<div className="w-3/4 text-xs font-medium text-gray-500 uppercase tracking-wider">البريد الإلكتروني</div>
+<div className="w-2/4 pr-4 text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</div>
+<div className="w-2/5 text-xs font-medium text-gray-500 uppercase tracking-wider">رقم الهاتف</div>
+<div className="w-1/5 text-xs font-medium text-gray-500 uppercase tracking-wider">الإجراء</div>
       </div>
        {/* Coach list */}
        {/* Iterate over coaches and render each */}

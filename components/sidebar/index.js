@@ -17,68 +17,69 @@ import SidebarItem from "./item";
 
 
 
-const items= [
+const items = [
   {
-    name: "Dashboard",
+    name: "لوحة القيادة",
     path: "/Home/firstpage",
     icon: LayoutDashboard,
   },
   {
-    name: "Calendar",
+    name: "التقويم",
     path: "/Home/calendar",
-    icon: CalendarDays
+    icon: CalendarDays,
   },
   {
-    name: "Classes",
+    name: "الفصول",
     path: "/Home/classes",
     icon: LandPlot,
   },
   {
-    name: "Coaches",
+    name: "مُعَلِّمُون",
     path: "/Home/coaches",
     icon: Users2,
   },
   {
-    name: "Clients",
+    name: "طلاب",
     path: "/Home/players",
     icon: CircleUserRound,
   },
+  // {
+  //   name: "الحجز",
+  //   path: "/Home/matches",
+  //   icon: Medal,
+  // },
+  // {
+  //   name: "البطولات",
+  //   path: "/Home/tournaments",
+  //   icon: Trophy,
+  // },
   {
-    name: "Booking",
-    path: "/Home/matches",
-    icon: Medal,
-  },
-  {
-    name: "Tournaments",
-    path: "/Home/tournaments",
-    icon: Trophy,
-  },
-  {
-    name: "Billing",
+    name: "الفواتير",
     path: "/Home/payment",
     icon: CircleDollarSign,
     items: [
       {
-        name: "Invoices",
+        name: "الفواتير",
         path: "/Home/payment",
       },
       {
-        name: "Payouts",
+        name: "المدفوعات",
         path: "/Home/payment/coaches",
       },
     ],
   },
   {
-    name: "Settings",
+    name: "الإعدادات",
     path: "/Home/settings",
     icon: Settings,
   },
 ];
 
+
 const Sidebar = () => {
   return (
 
-    <div className="fixed top-0 left-0 min-h-screen w-64 bg-white shadow-lg  p-4">
+    <div className="fixed top-0 right-0 min-h-screen w-64 bg-white shadow-lg  p-4">
       <div className="flex flex-col space-y-10 w-full">
      <img className="h-50 w-fit" src="/logo-expanded.png" alt="Logo" /> 
         <div className="flex flex-col space-y-2">

@@ -17,6 +17,8 @@ import { Card } from '../payment/coaches/page';
 import { BadgeDollarSign, Gauge, Hourglass, MoreHorizontalIcon, User2, UserPlus, UserRound } from 'lucide-react';
 import styles from '@/app/Home/firstpage/dashboard.module.css'
 import Rightbar from '@/components/UI/rightside/rightbar';
+import ar from "date-fns/locale/ar-DZ";
+
 // Mocked data for cards and chart
 const cards = [
   { id: 1, title: "Active Users", number: 1024, change: 5 },
@@ -550,115 +552,127 @@ const handleAddRow = () => {
 
 
   return (
-<div className={styles.wrapper}>
+<div className={styles.wrapper}  style={{ direction: 'rtl' }}>
 
 <div className={styles.main}>
-<h2 className="text-3xl font-bold mb-10 ml-2">Dashboard</h2>
-  <div className={styles.cards}>
- 
-   <Card title={'Played Matches'} data={status.totalMatches} subtitle={`${status.totalMatches} from last month`} icon={<Gauge size={32} color="#0E2433" className="text-gray-600" />} />
-   <Card title={'Revenues'} data={`$ ${status.revenue}`} subtitle={` `} icon={<BadgeDollarSign size={32} color="#0E2433" className="text-gray-600" />} />
-   <Card title={'Hours of court occupation'} data={`${convertMinutesToHours(status.totalReservation)} hours`} subtitle={` `} icon={<Hourglass size={32} color="#0E2433" className="text-gray-600" />} />
-    <Card title={'Total Clients'} data={status.users} subtitle={`${status.users} new ones`} icon={<UserPlus size={32} color="#0E2433" className="text-gray-600" />} /> 
-   {/* <Card title={'Total Coaches'} data={status.coaches} subtitle={` `} icon={<UserRound size={32} color="#0E2433" className="text-gray-600" />} /> */}
+<h2 className="text-3xl font-bold mb-10 ml-2">لوحة القيادة</h2>
+<div className={styles.cards}>
+  <Card
+    title={'الدروس المقدمة'}
+    data={status.totalMatches}
+    subtitle={`${status.totalMatches} من الشهر الماضي`}
+    icon={<Gauge size={32} color="#0E2433" className="text-gray-600" />}
+  />
+  <Card
+title={'الإيرادات'}
+    data={` ${status.revenue.toFixed(2)} $`}
+    subtitle={``}
+    icon={<BadgeDollarSign size={32} color="#0E2433" className="text-gray-600" />}
+  />
+  <Card
+  title={'ساعات استخدام الفصول'}
+    data={`${convertMinutesToHours(status.totalReservation)} ساعات`}
+    subtitle={``}
+    icon={<Hourglass size={32} color="#0E2433" className="text-gray-600" />}
+  />
+  <Card
+    title={'إجمالي الطلاب'}
+    data={status.users}
+    subtitle={`${status.users} جدد`}
+    icon={<UserPlus size={32} color="#0E2433" className="text-gray-600" />}
+  />
+</div>
 
-       
-  </div>
-
-<div className="  border rounded-lg w-full bg-white p-4 relative mb-4  mt-3 self-center">
-             
-<h3 className="text-xl font-bold mb-2 self-start mt-2">Attendance :</h3>
-    <div className="">
-     <DatePicker
-        id="date"
-        selected={
-        selectedDate
-      }
-        onChange={(date) =>   {setSelectedDate(date);setSelectedAttendance((prev) => ({
+<div className="border rounded-lg w-full bg-white p-4 relative mb-4 mt-3 self-center">
+  <h3 className="text-xl font-bold mb-2 self-start mt-2">الحضور:</h3>
+  <div className="">
+    <DatePicker
+      id="date"
+      selected={selectedDate}
+      onChange={(date) => {
+        setSelectedDate(date);
+        setSelectedAttendance((prev) => ({
           ...prev,
-   date:date
-        }))}} // Update the 'date' field in newPlayerDetails
-
-        dateFormat="yyyy-MM-dd" // Specify the date format
-        className="rounded-lg w-full px-3 py-2 border"
-
-      />
-      </div>
-      <div style={{ height: '300px', overflowY: 'auto' }}>
-  <table className="table-auto w-full min-w-full divide-y divide-gray-200 mt-5">
-        <thead className="bg-gray-50 ">
-            <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-            <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Time In</th>
-            <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Time Out</th>
-            <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200 overflow-y-auto">
-          {selectedAttendance?.listData?.map((trainer, index) => (
-    <tr key={index}>
-        <td className="px-6 py-4 whitespace-nowrap">{trainer.name}</td>
-        <td className="px-6 py-4 whitespace-nowrap">
-        <div className="flex">
-    <select
-        value={trainer.timeIn.hours}
-        onChange={(e) => handleTimeInHourChange(e, index)}
-        className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-        <option value="">HH</option>
-        {hours.map((hour) => (
-            <option key={hour} value={hour}>{hour}</option>
+          date: date,
+        }));
+      }}
+      dateFormat="yyyy-MM-dd"
+      className="rounded-lg w-full px-3 py-2 border"
+      locale={ar}
+    />
+  </div>
+  <div style={{ height: '300px', overflowY: 'auto' }}>
+    <table className="table-auto w-full min-w-full divide-y divide-gray-200 mt-5">
+      <thead className="bg-gray-50">
+        <tr>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الاسم</th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">الوقت البداية</th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">الوقت النهاية</th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody className="bg-white divide-y divide-gray-200 overflow-y-auto">
+        {selectedAttendance?.listData?.map((trainer, index) => (
+          <tr key={index}>
+            <td className="px-6 py-4 whitespace-nowrap">{trainer.name}</td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="flex">
+                <select
+                  value={trainer.timeIn.hours}
+                  onChange={(e) => handleTimeInHourChange(e, index)}
+                  className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">س</option>
+                  {hours.map((hour) => (
+                    <option key={hour} value={hour}>{hour}</option>
+                  ))}
+                </select>
+                <select
+                  value={trainer.timeIn.minutes}
+                  onChange={(e) => handleTimeInMinuteChange(e, index)}
+                  className="flex-1 px-3 py-2 border rounded-md ml-2 bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">د</option>
+                  {minutes.map((minute) => (
+                    <option key={minute} value={minute}>{minute}</option>
+                  ))}
+                </select>
+              </div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="flex">
+                <select
+                  value={trainer.timeOut.hours}
+                  onChange={(e) => handleTimeOutHourChange(e, index)}
+                  className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
+                >
+                  <option value="">س</option>
+                  {hours.map((hour) => (
+                    <option key={hour} value={hour}>{hour}</option>
+                  ))}
+                </select>
+                <select
+                  value={trainer.timeOut.minutes}
+                  onChange={(e) => handleTimeOutMinuteChange(e, index)}
+                  className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">د</option>
+                  {minutes.map((minute) => (
+                    <option key={minute} value={minute}>{minute}</option>
+                  ))}
+                </select>
+              </div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="flex justify-center">
+                <button className="px-3 py-1 bg-red-500 text-white rounded mr-2" onClick={() => handleAbsent(index)}>غائب</button>
+                <button className="px-3 py-1 border text-white rounded mr-2" style={{ backgroundColor: "#335fff" }} onClick={() => handleRemove(trainer)}>إزالة</button>
+              </div>
+            </td>
+          </tr>
         ))}
-    </select>
-    <select
-        value={trainer.timeIn.minutes}
-        onChange={(e) => handleTimeInMinuteChange(e, index)}
-        className="flex-1 px-3 py-2 border rounded-md ml-2 bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-        <option value="">MM</option>
-        {minutes.map((minute) => (
-            <option key={minute} value={minute}>{minute}</option>
-        ))}
-    </select>
-</div>
+      </tbody>
 
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-        <div className="flex">
-    <select
-        value={trainer.timeOut.hours}
-        onChange={(e) => handleTimeOutHourChange(e, index)}
-        className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
-    >
-        <option value="">HH</option>
-        {hours.map((hour) => (
-            <option key={hour} value={hour}>{hour}</option>
-        ))}
-    </select>
-    <select
-        value={trainer.timeOut.minutes}
-        onChange={(e) => handleTimeOutMinuteChange(e, index)}
-        className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-        <option value="">MM</option>
-        {minutes.map((minute) => (
-            <option key={minute} value={minute}>{minute}</option>
-        ))}
-    </select>
-</div>
-
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-        <div className="flex justify-center">
-            <button className="px-3 py-1 bg-red-500 text-white rounded mr-2" onClick={() => handleAbsent(index)}>Absent</button>
-            <button className="px-3 py-1 border text-white  rounded rounded mr-2" style={{backgroundColor:"#335fff"}}onClick={() => handleRemove(trainer)}>Remove</button>
-     
-            </div>
-        </td>
-    </tr>
-))}
-
-</tbody>
 
         {/* Add Player row */}
         {showAddRow && (
@@ -677,7 +691,7 @@ const handleAddRow = () => {
   }}
   className="rounded-lg w-full py-2 border-none"
 >
-        <option value="">Select a user</option>
+        <option value="">اختر المعلم</option>
         { trainers.map((user) => (
           <option key={user.id} value={user.nameandsurname}>
             {user.nameandsurname}
@@ -701,7 +715,7 @@ const handleAddRow = () => {
   className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
 >
 
-        <option value="">HH</option>
+        <option value="">س</option>
         {hours.map((hour) => (
             <option key={hour} value={hour}>{hour}</option>
         ))}
@@ -720,7 +734,7 @@ const handleAddRow = () => {
     }}
         className="flex-1 px-3 py-2 border rounded-md ml-2 bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
-        <option value="">MM</option>
+        <option value="">د</option>
         {minutes.map((minute) => (
             <option key={minute} value={minute}>{minute}</option>
         ))}
@@ -744,7 +758,7 @@ onChange={(e) => {
 }}
         className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
     >
-        <option value="">HH</option>
+        <option value="">س</option>
         {hours.map((hour) => (
             <option key={hour} value={hour}>{hour}</option>
         ))}
@@ -763,7 +777,7 @@ onChange={(e) => {
 }}
         className="flex-1 px-3 py-2 border rounded-md bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
-        <option value="">MM</option>
+        <option value="">د</option>
         {minutes.map((minute) => (
             <option key={minute} value={minute}>{minute}</option>
         ))}
@@ -784,31 +798,31 @@ onChange={(e) => {
       JSON.stringify(attendance.find(obj => obj.date === selectedAttendance.date).listData) !== JSON.stringify(selectedAttendance.listData) 
       && (
   <div className="mt-4">
-    <button className="px-4 py-2 bg-blue-500 text-white rounded mr-2" onClick={handleSubmitToDatabase}>Submit</button>
+    <button className="px-4 py-2 bg-blue-500 text-white rounded ml-2" onClick={handleSubmitToDatabase}>حفظ</button>
   </div>
 )}
-      {!showAddRow ? (<div className='absolute top-0 right-2'>
-                <button className="px-4 py-2 button-excel mr-2" onClick={handleDownloadExcel}>Import</button>
+      {!showAddRow ? (<div className='absolute top-0 left-2'>
+                <button className="px-4 py-2 button-excel ml-2" onClick={handleDownloadExcel}>استيراد</button>
                         <button
                           onClick={handleAddRow}
                           className=" button-white mt-3"
                         >
-                          Add Player
+                         إضافة الحضور للمعلم
                         </button>
                         </div>
                       ):(
                         <>
                          <button
                 onClick={handleSavePlayer}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
               >
-                Save
+               حفظ
               </button>
               <button
                 onClick={handleCancelAddRow}
                 className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               >
-                Cancel
+                إلغاء
               </button>
               </>
                       )}

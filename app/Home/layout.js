@@ -13,13 +13,14 @@ export default function RootLayout({
 
  
        <div className="flex min-h-screen w-full bg-slate-100">
-        <Sidebar />
-        <div className="flex flex-col w-full h-full ml-64">  
+      
+        <div className="flex flex-col w-full h-full mr-64" style={{ direction: 'rtl' }}>  
           <Header />
           <div className="p-4">
             {children}
           </div>
         </div>
+        <Sidebar />
       </div>
 
 

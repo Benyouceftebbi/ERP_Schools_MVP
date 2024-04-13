@@ -291,7 +291,7 @@ onChange={handleInputChange}
       <div className="ml-4 grid grid-cols-2 gap-4 mt-6">
 
       <div className="flex flex-col">
-              <label htmlFor="startDate" className="font-semibold">Start Date</label>
+              <label htmlFor="startDate" className="font-semibold">تاريخ البدء</label>
        
                   <DatePicker
         selected={reservation.startDate}
@@ -391,142 +391,125 @@ onChange={handleInputChange}
 
   
   
-      return    (
-        <div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10" style={{ height: '100%' }}>
-          <button onClick={handleClose} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+    return (
+      <div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10" style={{ height: '100%' }}>
+        <button onClick={handleClose} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
     
-          <div className="w-5/12 h-full bg-white border rounded-lg flex flex-col justify-start items-start">
-            <div className='flex'>
-              <h2 className="text-xl font-bold ml-4 mt-4 mb-6">New Membership</h2>
-              
-              <div className='ml-72'/>
-              <div className="mt-4">
+        <div className="w-5/12 h-full bg-white border rounded-lg flex flex-col justify-start items-start">
+          <div className='flex'>
+            <h2 className="text-xl font-bold ml-4 mt-4 mb-6">عضوية جديدة</h2>
             
+            <div className='ml-72'/>
+            <div className="mt-4">
+          
+            </div>
+          </div>
+          {/* Form inputs */}
+          <form onSubmit={handleSubmit} className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 overflow-y-auto" style={{ width: 'calc(100% - 24px)' }}>
+            <h2 className="text-xl font-bold ml-4 mt-4 mb-2">معلومات عامة</h2>
+            <p className="font ml-4 text-slate-600 mb-6">ضبط كيفية عرض العضوية للاعبيك</p> 
+            <div className="ml-4 grid grid-cols-1 gap-4">
+              <div className="flex flex-col">
+                <strong>الاسم</strong>
+                <input
+                  className="rounded-lg"
+                  type="text"
+                  name="name"
+                  value={reservation.name}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <strong>الوصف</strong>
+                <p className="font text-slate-600 mb-2 mt-1">وصف عضوية النادي</p> 
+                <textarea name='description' onChange={handleInputChange} className="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" id="description" rows="4" value={reservation.description}></textarea>
               </div>
             </div>
-            {/* Form inputs */}
-            <form onSubmit={handleSubmit} className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 overflow-y-auto" style={{ width: 'calc(100% - 24px)' }}>
-            <h2 className="text-xl font-bold ml-4 mt-4 mb-2">General Information</h2>
-              <p class="font ml-4 text-slate-600 mb-6">Configure How mebership will be shown to your players</p> 
-              <div className="ml-4 grid grid-cols-1 gap-4">
+            <h2 className="text-xl font-bold ml-4 mt-8 mb-2">امتيازات العضوية</h2>
+            <p className="font ml-4 text-slate-600 mb-6">ضبط فوائد العضوية</p> 
+            <div className="ml-4 grid grid-cols-2 gap-4 mt-6">
               <div className="flex flex-col">
-                <strong>Name</strong>
+                <strong>خصم على أول حصة تدريبية (%)</strong>
                 <input
-            className="rounded-lg"
-            type="text"
-            name="name"
-            value={reservation.name}
-            onChange={handleInputChange}
-          />
-    
-      </div>
-      <div className="flex flex-col">
-                <strong>Description</strong>
-                <p class="font  text-slate-600 mb-2 mt-1">Club membership Description</p> 
-
-                <textarea  name='description'  onChange={handleInputChange} class="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" id="description" rows="4" value={reservation.description}></textarea>
-
-    
-      </div>
-      </div>
-      <h2 className="text-xl font-bold ml-4 mt-8 mb-2">Membership Privileges</h2>
-              <p class="font ml-4 text-slate-600 mb-6">Configure membership benefits</p> 
-      <div className="ml-4 grid grid-cols-2 gap-4 mt-6">
-    <div className="flex flex-col">
-
-                <strong>Discount on first training (%)</strong>
-                <input
-            className="rounded-lg"
-            type="number"
-            name="firstTrainingDiscount"
-            value={reservation.firstTrainingDiscount}
-            onChange={handleInputChange}
-          />
-    
-      </div>
-      <div className="flex flex-col">
-
-<strong>Discount on other training (%)</strong>
-<input
-className="rounded-lg"
-type="number"
-name="otherTrainingDiscount"
-value={reservation.otherTrainingDiscount}
-onChange={handleInputChange}
-/>
-
-</div>
-<div className="flex flex-col">
-
-<strong>Discount on court Booking (%)</strong>
-<input
-className="rounded-lg"
-type="number"
-name="courtBookingDiscount"
-value={reservation.courtBookingDiscount}
-onChange={handleInputChange}
-/>
-
-</div>
-<div className="flex flex-col">
-
-<strong>Discount on Tournament Booking (%)</strong>
-<input
-className="rounded-lg"
-type="number"
-name="tournamentDiscount"
-value={reservation.tournamentDiscount}
-onChange={handleInputChange}
-/>
-
-</div>
-</div>
-<h2 className="text-xl font-bold ml-4 mt-8 mb-2">Club membership price</h2>
-              <p class="font ml-4 text-slate-600 mb-6">this is the price that will be charged to your club Memebers</p> 
-      <div className="ml-4 grid grid-cols-2 gap-4 mt-6">
-      <div className="flex flex-col">
-                <strong>Price</strong>
-                <input
-className="rounded-lg"
-type="number"
-name="price"
-value={reservation.price}
-onChange={handleInputChange}
-/>
-      </div>
-      <div className="flex flex-col">
-      <strong>Payment frequency</strong>
-      <select
-        name="frequency"
-        value={reservation.frequency}
-        onChange={handleInputChange}
-        className="rounded-lg"
-      >
-    
-        <option value="monthly">
-           Monthly
-          </option>
-          <option  value="yearly">
-           Yearly
-          </option>
-      </select>
-      </div>
-
-  <button type="submit"  className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
-          Create membership
-        </button>
+                  className="rounded-lg"
+                  type="number"
+                  name="firstTrainingDiscount"
+                  value={reservation.firstTrainingDiscount}
+                  onChange={handleInputChange}
+                />
               </div>
-      
-            </form>
-  
-          </div>
-  
+              <div className="flex flex-col">
+                <strong>خصم على حصص التدريب الأخرى (%)</strong>
+                <input
+                  className="rounded-lg"
+                  type="number"
+                  name="otherTrainingDiscount"
+                  value={reservation.otherTrainingDiscount}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <strong>خصم على حجز الملاعب (%)</strong>
+                <input
+                  className="rounded-lg"
+                  type="number"
+                  name="courtBookingDiscount"
+                  value={reservation.courtBookingDiscount}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <strong>خصم على حجز البطولات (%)</strong>
+                <input
+                  className="rounded-lg"
+                  type="number"
+                  name="tournamentDiscount"
+                  value={reservation.tournamentDiscount}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            <h2 className="text-xl font-bold ml-4 mt-8 mb-2">سعر عضوية النادي</h2>
+            <p className="font ml-4 text-slate-600 mb-6">هذا هو السعر الذي سيتم فرضه على أعضاء ناديك</p> 
+            <div className="ml-4 grid grid-cols-2 gap-4 mt-6">
+              <div className="flex flex-col">
+                <strong>السعر</strong>
+                <input
+                  className="rounded-lg"
+                  type="number"
+                  name="price"
+                  value={reservation.price}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <strong>تكرار الدفع</strong>
+                <select
+                  name="frequency"
+                  value={reservation.frequency}
+                  onChange={handleInputChange}
+                  className="rounded-lg"
+                >
+                  <option value="monthly">
+                    شهرياً
+                  </option>
+                  <option value="yearly">
+                    سنوياً
+                  </option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
+              إنشاء عضوية
+            </button>
+          </form>
         </div>
-      )
+      </div>
+    );
     }
 const Settings=()=>{
     const [clubInformation,setClubInformation]=useState({courts:[],schedule:{},amenities:{}})
@@ -649,103 +632,97 @@ getClubInfo()
       const [showModal,setShowModal]=useState(false)
       const [showModalDiscount,setShowModalDiscount]=useState(false)
 
-return(
-    <>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
-
-
-<div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
-  <h1 class="border-b py-6 text-4xl font-semibold">Settings</h1>
-  <div class="grid grid-cols-8 pt-3 pb-10 sm:grid-cols-10">
-    <div class="relative my-4 w-56 sm:hidden">
-      <input class="peer hidden" type="checkbox" name="select-1" id="select-1" />
-      <label for="select-1" class="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-blue-700 peer-checked:ring">Teams </label>
-      <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-0 top-3 ml-auto mr-5 h-4 text-slate-700 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-      </svg>
-
-    </div>
-
-    <div class="col-span-2 hidden sm:block">
-    <ul>
-        <li
-          className={`mt-5 cursor-pointer border-l-2 ${selectedScreen === 'Settings' ? 'border-l-blue-700 text-blue-700' : 'border-transparent text-gray-700'} px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700`}
-          onClick={() => handleScreenChange('Settings')}
-        >
-          Settings
-        </li>
-        <li
-          className={`mt-5 cursor-pointer border-l-2 ${selectedScreen === 'Memberships' ? 'border-l-blue-700 text-blue-700' : 'border-transparent text-gray-700'} px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700`}
-          onClick={() => handleScreenChange('Memberships')}
-        >
-          Memberships & Discounts
-        </li>
-      </ul>
-    </div>
-
- {selectedScreen ==='Settings' && (  <div class="col-span-8 overflow-hidden rounded-xl sm:bg-gray-50 sm:px-8 sm:shadow">
-      <div class="pt-4">
-        <h1 class="py-2 text-2xl font-semibold">Settings</h1>
-         <p class="font- text-slate-600">Court info,Description,Location,Images,Courts....</p> 
-      </div>
-      <hr class="mt-4 mb-8" />
-      <p class="py-2 text-xl font-semibold">Court Info</p>
-
-      <div class="grid grid-cols-3 gap-3 flex items-center">
-          <label for="club-name">
-            <span class="text-sm text-gray-500">Club Name</span>
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input onChange={handleInputChange} type="text" name='name' id="club-name" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" value={clubInformation?.name} />
-            </div>
-          </label>
-          <label for="club-website">
-            <span class="text-sm text-gray-500">Website</span>
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input  onChange={handleInputChange} name="website" type="website" id="club-website" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none"  />
-            </div>
-          </label>
-          <label for="club-phone">
-            <span class="text-sm text-gray-500">Phone</span>
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input type="number"  onChange={handleInputChange} name="phone" id="club-phone" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none"  />
-            </div>
-          </label>
-
-        </div>
-
-
-      <hr class="mt-4 mb-8" />
-      <p class="py-2 text-xl font-semibold">Location</p>
-      <div class="space-y-1">
-        <div class="rounded-md border ">
- 
-          <div class="flex flex-col space-y-3 px-4 py-6 sm:px-10">
-            <label class="block" for="address">
-              <p class="text-sm">Address</p>
-              <input   onChange={handleInputChange} name='address' class="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" type="text" value={clubInformation?.address} />
-            </label>
-           
-          </div>
-        </div>
-      </div>
-
-      <hr class="mt-4 mb-8" />
-      <p class="py-2 text-xl font-semibold">Description</p>
-      <div class="space-y-1">
-        <div class="rounded-md border ">
- 
-        <div class="flex flex-col space-y-3 px-4 py-6 sm:px-10">
-  <label class="block" for="description">
-    <p class="text-sm">Description</p>
-    <textarea  name='description'  onChange={handleInputChange} class="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" id="description" rows="4" value={clubInformation?.description}></textarea>
-  </label>
-</div>
-        </div>
-      </div>
+      return (
+        <>
+          <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
       
-      <hr class="mt-4 mb-8" />
-      <div >
-      <p class="text-sm">Courts</p>
+          <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto text-right">
+            <h1 class="border-b py-6 text-4xl font-semibold">الإعدادات</h1>
+            <div class="grid grid-cols-8 pt-3 pb-10 sm:grid-cols-10">
+              <div class="relative my-4 w-56 sm:hidden">
+                <input class="peer hidden" type="checkbox" name="select-1" id="select-1" />
+                <label for="select-1" class="flex w-full cursor-pointer select-none rounded-lg border p-2 px-3 text-sm text-gray-700 ring-blue-700 peer-checked:ring">الفرق</label>
+                <svg xmlns="http://www.w3.org/2000/svg" class="pointer-events-none absolute right-0 top-3 ml-auto mr-5 h-4 text-slate-700 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+      
+              <div class="col-span-2 hidden sm:block text-right">
+                <ul>
+                  <li
+                    className={`mt-5 cursor-pointer border-r-2 ${selectedScreen === 'Settings' ? 'border-r-blue-700 text-blue-700' : 'border-transparent text-gray-700'} px-2 py-2 font-semibold transition hover:border-r-blue-700 hover:text-blue-700`}
+                    onClick={() => handleScreenChange('Settings')}
+                  >
+                    الإعدادات
+                  </li>
+                  <li
+                    className={`mt-5 cursor-pointer border-r-2 ${selectedScreen === 'Memberships' ? 'border-r-blue-700 text-blue-700' : 'border-transparent text-gray-700'} px-2 py-2 font-semibold transition hover:border-r-blue-700 hover:text-blue-700`}
+                    onClick={() => handleScreenChange('Memberships')}
+                  >
+                    العضويات والخصومات
+                  </li>
+                </ul>
+              </div>
+      
+              {selectedScreen === 'Settings' && (
+                <div class="col-span-8 overflow-hidden rounded-xl sm:bg-gray-50 sm:px-8 sm:shadow">
+                  <div class="pt-4">
+                    <h1 class="py-2 text-2xl font-semibold">الإعدادات</h1>
+                    <p class="font text-slate-600">معلومات الملعب، الوصف، الموقع، الصور، الملاعب....</p>
+                  </div>
+                  <hr class="mt-4 mb-8" />
+                  <p class="py-2 text-xl font-semibold">معلومات الملعب</p>
+      
+                  <div class="grid grid-cols-3 gap-3 flex items-center">
+                    <label for="club-name">
+                      <span class="text-sm text-gray-500">اسم النادي</span>
+                      <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                        <input onChange={handleInputChange} type="text" name='name' id="club-name" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" value={clubInformation?.name} />
+                      </div>
+                    </label>
+                    <label for="club-website">
+                      <span class="text-sm text-gray-500">الموقع الإلكتروني</span>
+                      <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                        <input onChange={handleInputChange} name="website" type="website" id="club-website" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" />
+                      </div>
+                    </label>
+                    <label for="club-phone">
+                      <span class="text-sm text-gray-500">الهاتف</span>
+                      <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                        <input type="number" onChange={handleInputChange} name="phone" id="club-phone" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" />
+                      </div>
+                    </label>
+                  </div>
+      
+                  <hr class="mt-4 mb-8" />
+                  <p class="py-2 text-xl font-semibold">الموقع</p>
+                  <div class="space-y-1">
+                    <div class="rounded-md border ">
+                      <div class="flex flex-col space-y-3 px-4 py-6 sm:px-10">
+                        <label class="block" for="address">
+                          <p class="text-sm">العنوان</p>
+                          <input onChange={handleInputChange} name='address' class="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" type="text" value={clubInformation?.address} />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <hr class="mt-4 mb-8" />
+                  <p class="py-2 text-xl font-semibold">الوصف</p>
+                  <div class="space-y-1">
+                    <div class="rounded-md border ">
+                      <div class="flex flex-col space-y-3 px-4 py-6 sm:px-10">
+                        <label class="block" for="description">
+                          <p class="text-sm">الوصف</p>
+                          <textarea name='description' onChange={handleInputChange} class="w-full rounded-md border py-2 px-2 bg-gray-50 outline-none ring-blue-600 focus:ring-1 bg-white" id="description" rows="4" value={clubInformation?.description}></textarea>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <hr class="mt-4 mb-8" />
+                  <div>
+                    <p class="text-sm">الملاعب</p>
   <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-0 right-0 m-5 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
     <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>

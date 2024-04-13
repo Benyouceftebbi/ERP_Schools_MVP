@@ -235,7 +235,7 @@ const ChatScreen = ({ classId, classData }) => {
             onClick={sendMessage}
             className="ml-2 px-4 py-2 bg-blue-500 text-white rounded"
           >
-            Send
+          إرسال
           </button>
         </div>
       </div>
@@ -470,69 +470,69 @@ if(newPlayerDetails.membership){
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              name
+     الاسم
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              level
+   المستوى
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {"times per week"}
+              {"رات في الأسبوع"}
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {"duration (months)"}
+              {"المدة (شهور)"}
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {"lessons left"}
+              {"الدروس المتبقية"}
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {"Payment status"}
+              {"حالة الدفع"}
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              type
+        لنوع
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Amount
+        لمبلغ
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Discount
+    الخصم
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              {"Joining date"}
+              {"تاريخ الانضمام"}
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Status
+        الحالة
             </th>
           </tr>
         </thead>
@@ -620,10 +620,10 @@ if(newPlayerDetails.membership){
                     participant.status
                   )}`}
                 >
-                  <option value="">Status</option>
-                  <option value="active">Active</option>
-                  <option value="suspended">Suspended</option>
-                  <option value="paused">Paused</option>
+                  <option value="">الحالة</option>
+                  <option value="active">نشط</option>
+                  <option value="suspended">معلق</option>
+                  <option value="paused">متوقف مؤقتًا</option>
                 </select>
               </td>
             </tr>
@@ -649,7 +649,7 @@ if(newPlayerDetails.membership){
                   }));
                 }}
               >
-                <option value="">Select player</option>
+                <option value="">Select student</option>
                 {nonParticipants.map((participant, index) => (
                   <option key={index} value={JSON.stringify(participant)}>
                     {participant.nameandsurname}
@@ -667,11 +667,11 @@ if(newPlayerDetails.membership){
                 onChange={handleInputChange}
               >
                 <option value="" disabled hidden>
-                  Select Level
+                ختر المستوى
                 </option>
-                <option value="Begginer">Begginer</option>
-                <option value="Advanced">Advanced</option>
-                <option value="Pro">Pro</option>
+                <option value="Begginer">مبتدئ</option>
+                <option value="Advanced">متقدم</option>
+                <option value="Pro">محترف</option>
                 {/* Add more options as needed */}
               </select>
             </td>
@@ -687,7 +687,7 @@ if(newPlayerDetails.membership){
                 <option value="">Select times</option>
                 {classDetails.classTime.map((cls, index) => (
                   <option key={index} value={Number(index)}>
-                    {index + 1} time/week
+                    {index + 1} الوقت/الأسبوع
                   </option>
                 ))}
               </select>
@@ -703,10 +703,10 @@ if(newPlayerDetails.membership){
                 onChange={handleInputChange}
                 itemType="number"
               >
-                <option value="">Select duration</option>
-                <option value={1}>1 Month</option>
-                <option value={2}>2 Months</option>
-                <option value={3}>3 Months</option>
+                <option value="">اختر المدة</option>
+                <option value={1}>شهر واحد</option>
+                <option value={2}>شهرين</option>
+                <option value={3}>ثلاثة أشهر</option>
                 {/* Add more options as needed */}
               </select>
             </td>
@@ -731,10 +731,10 @@ if(newPlayerDetails.membership){
                 onChange={handleInputChange}
               >
                 <option value="" disabled hidden>
-                  Select Payment Status
+                ختر حالة الدفع
                 </option>
-                <option value="paid">Paid</option>
-                <option value="not paid">Not Paid</option>
+                <option value="paid">مدفوع</option>
+                <option value="not paid">غير مدفوع</option>
                 {/* Add more options as needed */}
               </select>
             </td>
@@ -749,10 +749,10 @@ if(newPlayerDetails.membership){
                 disabled={newPlayerDetails.paymentStatus != "paid"}
               >
                 <option value="" disabled hidden>
-                  Select Payemnt Type
+                ختر نوع الدفع
                 </option>
-                <option value="bank">Bank</option>
-                <option value="cash">Cash</option>
+                <option value="bank">بنك</option>
+                <option value="cash">نقداً</option>
                 {/* Add more options as needed */}
               </select>
             </td>
@@ -782,7 +782,7 @@ if(newPlayerDetails.membership){
                 className="rounded-lg"
                 style={{ width: "90px" }}
               >
-                <option value={0}>No discount</option>
+                <option value={0}>لا تخفيض</option>
                 {discounts.filter((discount) =>discount.uid.some((uid) => uid === classDetails.id)).map((discount, index) => (
                   <option key={index} value={JSON.stringify(discount)}>
                     {discount.name}
@@ -811,24 +811,24 @@ if(newPlayerDetails.membership){
           {participants != selectedPlayers && (
             <>
               <button onClick={updateOthers} className="button-blue  mt-5">
-                submit Changes
+              أرسل التغييرات
               </button>
               <button
                 onClick={() => setSelectedPlayers(participants)}
                 className="bg-gray-500 text-black-500  font-bold mt-5 ml-5 border rounded-lg px-5 py-2"
               >
-                Cancel Changes
+      إلغاء التغييرات
               </button>
             </>
           )}
         </>
       ) : (
         <div className="flex flex-row">
-          <button onClick={handleSaveOther} className="button-blue mr-2">
-            Save
+          <button onClick={handleSaveOther} className="button-blue ml-2">
+          حفظ
           </button>
           <button onClick={handleCancelAddOtherRow} className="button-red">
-            Cancel
+          لغاء
           </button>
         </div>
       )}
@@ -1039,7 +1039,7 @@ const UpcomingClasses = ({ classes, setI, i, canceled, classId }) => {
                 className="px-3 py-1 mt-4 rounded bg-green-500 text-white"
                 onClick={() => setShowModal(!showModal)}
               >
-                Change Time
+              تغيير الوقت
               </button>
 
               <Modal
@@ -1066,9 +1066,9 @@ const UpcomingClasses = ({ classes, setI, i, canceled, classId }) => {
                 ariaHideApp={false} // Disable accessibility features
               >
                 <h2 className="text-xl font-semibold  mb-4">
-                  Confirm Class Time Change
+                تأكيد تغيير وقت
                 </h2>
-                <p className="mb-4">Select the new time for the class:</p>
+                <p className="mb-4">اختر الوقت الجديد للصف:</p>
                 <DateTimePicker
                   onChange={(date) => {
                     setNewDateTime(date);
@@ -1083,13 +1083,13 @@ const UpcomingClasses = ({ classes, setI, i, canceled, classId }) => {
                     className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => handleConfirmChange(cls, newDateTime)}
                   >
-                    Confirm Change
+        تأكيد التغيير
                   </button>
                   <button
                     className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600"
                     onClick={() => setShowModal(false)}
                   >
-                    Cancel
+                  إلغاء
                   </button>
                 </div>
               </Modal>
@@ -1128,13 +1128,13 @@ const UpcomingClasses = ({ classes, setI, i, canceled, classId }) => {
                     className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
                     onClick={() => handleCancelClass(cls)}
                   >
-                    Confirm
+                  تأكيد
                   </button>
                   <button
                     className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600"
                     onClick={() => setShowModal1(false)}
                   >
-                    Cancel
+                  إلغاء
                   </button>
                 </div>
               </Modal>
@@ -1177,20 +1177,20 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
   const [classDetails, setClassDetails] = useState(item);
   const [showDetails, setShowDetails] = useState(false);
   const courts = [
-    "Court1",
-    "Court2",
-    "Court3",
-    "Court4",
-    "Court5",
-    "Court6",
-    "Court7",
-    "Court8",
-    "Court9",
-    "Court10",
-    "Court11",
-    "Court12",
-    "Court13",
-  ];
+    "قسم1",
+    "قسم2",
+    "قسم3",
+    "قسم4",
+    "قسم5",
+    "قسم6",
+    "قسم7",
+    "قسم8",
+    "قسم9",
+    "قسم10",
+    "قسم11",
+    "قسم12",
+    "قسم13",
+];
   const [activeTab, setActiveTab] = useState("details"); // Default active tab is details
 
   const [showCalendar, setShowCalendar] = useState(false); // State to control calendar visibility
@@ -1365,7 +1365,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
         >
           <button
             onClick={toggleDetails}
-            className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+            className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
           >
             <svg
               className="h-6 w-6"
@@ -1401,53 +1401,54 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <div className="flex justify-center space-x-4 w-full">
-                <button
-                  className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
-                    activeTab === "details"
-                      ? "text-indigo-600 hover:bg-indigo-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                  onClick={() => setActiveTab("details")}
-                >
-                  Details
-                </button>
-                <button
-                  className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
-                    activeTab === "attendance"
-                      ? "text-indigo-600 hover:bg-indigo-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                  onClick={() => setActiveTab("attendance")}
-                >
-                  Up Coming Classes
-                </button>
-                <button
-                  className={`px-4 py-2 font-semibold  rounded-lg focus:outline-none ${
-                    activeTab === "classHistory"
-                      ? "text-indigo-600 hover:bg-indigo-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                  onClick={() => setActiveTab("classHistory")}
-                >
-                  Class History
-                </button>
-                <button
-                  className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
-                    activeTab === "Chat"
-                      ? "text-indigo-600 hover:bg-indigo-100"
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                  onClick={() => setActiveTab("Chat")}
-                >
-                  Chat
-                </button>
-              </div>
+            <div className="flex justify-center space-x-4 w-full">
+    <button
+        className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
+            activeTab === "details"
+                ? "text-indigo-600 hover:bg-indigo-100"
+                : "text-gray-600 hover:bg-gray-100"
+        }`}
+        onClick={() => setActiveTab("details")}
+    >
+        التفاصيل
+    </button>
+    <button
+        className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
+            activeTab === "attendance"
+                ? "text-indigo-600 hover:bg-indigo-100"
+                : "text-gray-600 hover:bg-gray-100"
+        }`}
+        onClick={() => setActiveTab("attendance")}
+    >
+        الفصول القادمة
+    </button>
+    <button
+        className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
+            activeTab === "classHistory"
+                ? "text-indigo-600 hover:bg-indigo-100"
+                : "text-gray-600 hover:bg-gray-100"
+        }`}
+        onClick={() => setActiveTab("classHistory")}
+    >
+        سجل الفصول
+    </button>
+    <button
+        className={`px-4 py-2 font-semibold rounded-lg focus:outline-none ${
+            activeTab === "Chat"
+                ? "text-indigo-600 hover:bg-indigo-100"
+                : "text-gray-600 hover:bg-gray-100"
+        }`}
+        onClick={() => setActiveTab("Chat")}
+    >
+        دردشة
+    </button>
+</div>
+
             </div>
             {activeTab === "details" && (
               <div className="bg-white w-full">
                 <h1 className="text-lg font-semibold  ml-4 mb-2">
-                  General Information
+                معلومات عامة
                 </h1>
 
                 <div
@@ -1457,7 +1458,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                   <div className="ml-4 grid grid-cols-3 gap-4">
                     <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Name
+                      الاسم
                       </strong>
                       <input
                         className="rounded-lg "
@@ -1469,7 +1470,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     </div>
                     <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Type
+                      النوع
                       </strong>
 
                       <select
@@ -1478,14 +1479,14 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                         value={classDetails.Type}
                         onChange={handleInputChange}
                       >
-                        <option value="Group">Group</option>
-                        <option value="Semi-Group">Semi-Group</option>
-                        <option value="Private">Private</option>
+                        <option value="Group">مجموعة</option>
+                        <option value="Semi-Group">نصف مجموعة</option>
+                        <option value="Private">خاص</option>
                       </select>
                     </div>
                     <div className="flex flex-col rounded-lg">
                       <strong className="text-gray-600 font-semibold">
-                        Duration(weeks)
+                      مدة البرنامج (أسابيع)
                       </strong>
                       <div className="flex flex-row">
                         <input
@@ -1502,7 +1503,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     <div>
                       <div className="flex flex-col">
                         <strong className="text-gray-600 font-semibold">
-                          Trainer
+                        مدرس
                         </strong>
                         <select
                           className="rounded-lg"
@@ -1524,7 +1525,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
 
                     <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Features
+                      ميزات
                       </strong>
 
                       <input
@@ -1542,7 +1543,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     </div>
                     <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Registration deadline
+                      الموعد النهائي للتسجيل
                       </strong>
 
 <div          className="rounded-lg rounded-xl px-3 mt-2 w-90 ">
@@ -1571,7 +1572,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     {classDetails.classTime.map((cls, index) => (
                       <div key={index} className="flex flex-col">
                         <strong className="text-gray-600 font-semibold">
-                          {index + 1} time a week Price(Monthly)
+                        سعر (شهري) مرة في الأسبوع
                         </strong>
                         <input
                           className="rounded-lg "
@@ -1587,7 +1588,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold  ml-4 mb-2">
-                  Description
+                الوصف
                 </h3>
                 <div
                   className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full"
@@ -1602,7 +1603,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     onChange={handleInputChange} // Convert string back to array on change
                   />
                 </div>
-                <h3 className="text-lg font-semibold  ml-4 mb-2">Time</h3>
+                <h3 className="text-lg font-semibold  ml-4 mb-2">الوقت</h3>
                 <div
                   className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative"
                   style={{ width: "calc(100% - 24px)" }}
@@ -1611,19 +1612,19 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     className="absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded"
                     onClick={handleAddTime}
                   >
-                    Add Time
+        إضافة الوقت
                   </button>
                   <div className="grid grid-cols-2 gap-4">
                     {classDetails.classTime.map((date, index) => (
                       <div key={index} className="">
                         <strong className="text-gray-600 font-semibold">
-                          Date {index + 1}
+                        تاريخ {index + 1}
                         </strong>{" "}
                         <br />
                         <div className="flex flex-row">
                           <div className="mr-4">
                             <strong className="text-gray-600 font-semibold">
-                              Day
+                            اليوم 
                             </strong>{" "}
                             <br />
                             <select
@@ -1633,18 +1634,25 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                                 handleTimeChange(e.target.value, "day", index)
                               }
                             >
-                              <option value="Monday">Monday</option>
-                              <option value="Tuesday">Tuesday</option>
-                              <option value="Wednesday">Wednesday</option>
-                              <option value="Thursday">Thursday</option>
-                              <option value="Friday">Friday</option>
-                              <option value="Saturday">Saturday</option>
-                              <option value="Sunday">Sunday</option>
+                            
+<option value="Tuesday">الثلاثاء</option>
+<option value="Wednesday">الأربعاء</option>
+<option value="Thursday">الخميس</option>
+<option value="Friday">الجمعة</option>
+<option value="Saturday">السبت</option>
+<option value="Sunday">الأحد</option> 
+
+
+
+
+
+
+
                             </select>
                           </div>
                           <div className="mr-2">
                             <strong className="text-gray-600 font-semibold">
-                              Start Time
+                            وقت البدء 
                             </strong>{" "}
                             <br />
                             <input
@@ -1663,7 +1671,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                           </div>
                           <div className="mr-2">
                             <strong className="text-gray-600 font-semibold">
-                              End Time
+                            وقت الانتهاء 
                             </strong>{" "}
                             <br />
                             <input
@@ -1682,7 +1690,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                           </div>
                           <div className="flex flex-col">
                             <strong className="text-gray-600 font-semibold">
-                              Court
+                            القاعة
                             </strong>
                             <select
                               className="rounded-lg"
@@ -1706,14 +1714,14 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                           </div>
                         </div>
                         <button onClick={() => handleRemoveTime(index)}>
-                          Remove
+                        إزالة
                         </button>
                       </div>
                     ))}
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold  ml-4 mb-2">
-                  Restrictions
+                إرشادات
                 </h3>
                 <div
                   className="p-6 mt-4  border rounded-lg ml-4 mr-4 mb-8"
@@ -1722,7 +1730,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <strong className="text-gray-600 font-semibold">
-                        Min. Players
+                        Min. students
                       </strong>{" "}
                       <br />
                       <input
@@ -1736,7 +1744,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     </div>
                     <div>
                       <strong className="text-gray-600 font-semibold">
-                        Max. Players
+                        Max. studnets
                       </strong>{" "}
                       <br />
                       <input
@@ -1751,7 +1759,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
 
                     <div>
                       <strong className="text-gray-600 font-semibold">
-                        Level
+                      عمر المشاركين المتوسط
                       </strong>{" "}
                       <br />
                       <select
@@ -1764,14 +1772,14 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                           })
                         }
                       >
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advanced">Advanced</option>
+              <option value="Beginner">مبتدئ</option>
+<option value="Intermediate">متوسط</option>
+<option value="Advanced">متقدم</option> 
                       </select>
                     </div>
                     <div>
                       <strong className="text-gray-600 font-semibold">
-                        Average Age
+                      متوسط عم
                       </strong>{" "}
                       <br />
                       <input
@@ -1791,7 +1799,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                 >
                   <div>
                     <h3 className="text-lg font-semibold  ml-4 mb-2">
-                      Participants
+                    طلاب
                     </h3>
                     <ParticipantsHorizontalScroll
                       classDetails={classDetails}
@@ -1808,7 +1816,7 @@ const Item = ({ item, onNavigate, i, setI, trainers, trainees }) => {
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                   >
-                    Submit
+                 إرسال
                   </button>
                 </div>
               </div>
@@ -2128,7 +2136,7 @@ const NewItem = ({ trainers, trainees, setI, i }) => {
           <div className="w-3/6 h-full bg-white border rounded-t flex flex-col justify-start items-start">
             <button
               onClick={toggleForm}
-              className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+              className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none"
             >
               <svg
                 className="h-6 w-6"
@@ -2145,404 +2153,374 @@ const NewItem = ({ trainers, trainees, setI, i }) => {
               </svg>
             </button>
 
-            <div className="flex">
-              <h2 className="text-xl font-semibold  ml-4 mt-4 mb-6">
-                Class Details
-              </h2>
-              <div className="ml-72" />
-            </div>
-
+      
             <form className="bg-white w-full" onSubmit={handleSubmit}>
-              <h1 className="text-lg font-semibold  ml-4 mb-2">
-                General Information
-              </h1>
+            <h1 className="text-lg font-semibold  ml-4 mb-2">
+                معلومات عامة
+                </h1>
 
-              <div
-                className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8"
-                style={{ width: "calc(100% - 24px)" }}
-              >
-                <div className="ml-4 grid grid-cols-3 gap-4">
-                  <div>
-                    <strong className="text-gray-600 font-semibold">
-                      Name
-                    </strong>
-                    <input
-                      required
-                      className="rounded-lg"
-                      type="text"
-                      name="className"
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <strong className="text-gray-600 font-semibold">
-                      Type
-                    </strong>
-
-                    <select
-                      className="rounded-lg"
-                      name="Type"
-                      required
-                      onChange={handleInputChange}
-                    >
-                      <option value="Group">Group</option>
-                      <option value="Semi-Group">Semi-Group</option>
-                      <option value="Private">Private</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col rounded-lg">
-                    <strong className="text-gray-600 font-semibold">
-                      Duration(weeks)
-                    </strong>
-                    <div className="flex flex-row">
+                <div
+                  className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8"
+                  style={{ width: "calc(100% - 24px)" }}
+                >
+                  <div className="ml-4 grid grid-cols-3 gap-4">
+                    <div className="flex flex-col">
+                      <strong className="text-gray-600 font-semibold">
+                      الاسم
+                      </strong>
                       <input
-                        className="rounded-lg ml-2"
-                        type="number"
-                        name="Duration"
-                        required
-                        min={1}
+                        className="rounded-lg "
+                        type="text"
+                        name="className"
+                    
                         onChange={handleInputChange}
                       />
                     </div>
-                  </div>
-                  <div>
                     <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Trainer
+                      النوع
                       </strong>
+
                       <select
                         className="rounded-lg"
-                        name="TrainerRef"
-                        onChange={(e) => {
-                          const selectedTrainerId = e.target.value;
-                          const selectedTrainer = trainers.find(
-                            (trainer) =>
-                              trainer.nameandsurname === selectedTrainerId
-                          );
-                          setClassDetails((prevDetails) => ({
-                            ...prevDetails,
-                            TrainerRef: selectedTrainer.Ref, // Assuming selectedTrainer is the object reference
-                          }));
-                        }}
-                        required
+                        name="Type"
+                  
+                        onChange={handleInputChange}
                       >
-                        <option value="">select Trainer</option>
-                        {trainers.map((trainer, index) => (
-                          <option
-                            key={trainer.id}
-                            value={trainer.nameandsurname}
-                          >
-                            {trainer.nameandsurname}
-                          </option>
-                        ))}
+                        <option value="Group">مجموعة</option>
+                        <option value="Semi-Group">نصف مجموعة</option>
+                        <option value="Private">خاص</option>
                       </select>
                     </div>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <strong className="text-gray-600 font-semibold">
-                      Features
-                    </strong>
-
-                    <input
-                      className="rounded-lg"
-                      type="text"
-                      name="Features"
-                      required
-                      onChange={(e) =>
-                        setClassDetails({
-                          ...classDetails,
-                          features: e.target.value.split(", "),
-                        })
-                      } // Convert string back to array on change
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <strong className="text-gray-600 font-semibold">
-                      Registration deadline
-                    </strong>
-                    <div
-                      className="rounded-lg"
-                      type="text"
-                      name="RegistrationDeadLine"
-                      value={
-                        classDetails.RegistrationDeadLine
-                          ? classDetails.RegistrationDeadLine.toDateString()
-                          : new Date().toDateString()
-                      }
-                      onClick={handleTextClick}
-                      required // Convert string back to array on change
-                    />
-
-                    {showCalendar && (
-                      <DateTimePicker
-                        value={new Date()}
-                        onChange={(date) => {
-                          setClassDetails({
-                            ...classDetails,
-                            RegistrationDeadLine: date,
-                          });
-                          handleCalendarClose(); // Close calendar after date selection
-                        }}
-                        calendarIcon={null} // Remove default calendar icon
-                        required
-                      />
-                    )}
-                  </div>
-
-                  <div className="flex flex-col">
-                    <strong className="text-gray-600 font-semibold">
-                      Upload Class Image
-                    </strong>
-                    <label
-                      htmlFor="imageInput"
-                      className="rounded-lg border border-black-900 px-3 py-2  cursor-pointer "
-                    >
-                      {classDetails.image ? "Change Image" : "Upload Image"}
-                      <input
-                        id="imageInput"
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => {
-                          handleImageChange(e);
-                        }}
-                        style={{ display: "none" }}
-                        required
-                      />
-                    </label>
-                  </div>
-                  {classDetails.classTime.map((cls, index) => (
-                    <div key={index}>
+                    <div className="flex flex-col rounded-lg">
                       <strong className="text-gray-600 font-semibold">
-                        attending {index + 1} times a week Price (Monthly)
+                      مدة البرنامج (أسابيع)
                       </strong>
+                      <div className="flex flex-row">
+                        <input
+                          className="rounded-lg ml-2"
+                          type="number"
+                          name="Duration"
+         
+                          min={1}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex flex-col">
+                        <strong className="text-gray-600 font-semibold">
+                        مدرس
+                        </strong>
+                        <select
+                          className="rounded-lg"
+                          name="TrainerRef"
+                    
+                          onChange={handleInputChange}
+                        >
+                
+                          {trainers.map((trainer, index) => (
+                            <option key={index} value={trainer.Ref}>
+                              {trainer.nameandsurname}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col">
+                      <strong className="text-gray-600 font-semibold">
+                      ميزات
+                      </strong>
+
                       <input
                         className="rounded-lg"
                         type="text"
-                        name="classTime"
-                        value={cls.price}
+                        name="Features"
+                     
                         onChange={(e) =>
-                          handlePriceChange(e.target.value, "price", index)
-                        }
-                        required
+                          setClassDetails({
+                            ...classDetails,
+                            features: e.target.value.split(", "),
+                          })
+                        } // Convert string back to array on change
                       />
                     </div>
-                  ))}
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold  ml-4 mb-2">Description</h3>
-              <div
-                className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full"
-                style={{ width: "calc(100% - 24px)" }}
-              >
-                <input
-                  className="rounded-lg w-full"
-                  type="text"
-                  name="description"
-                  multiple
-                  required
-                  onChange={handleInputChange} // Convert string back to array on change
-                />
-              </div>
-              <h3 className="text-lg font-semibold  ml-4 mb-2">Time</h3>
-              <div
-                className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative"
-                style={{ width: "calc(100% - 24px)" }}
-              >
-                <button
-                  className="absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded"
-                  onClick={handleAddTime}
-                >
-                  Add Time
-                </button>
-                <div className="grid grid-cols-1 gap-4">
-                  {classDetails.classTime.map((date, index) => (
-                    <div key={index} className="">
+                    <div className="flex flex-col">
                       <strong className="text-gray-600 font-semibold">
-                        Date {index + 1}
+                      الموعد النهائي للتسجيل
+                      </strong>
+
+<div          className="rounded-lg rounded-xl px-3 mt-2 w-90 ">
+                        <DateTimePicker
+                        className="border-none"
+                      
+                        calendarClassName="border-none"
+                   
+                          onChange={(date) => {
+                            setClassDetails({
+                              ...classDetails,
+                              RegistrationDeadLine: date,
+                            });
+                            handleCalendarClose(); // Close calendar after date selection
+                          }}
+                          calendarIcon={null} // Remove default calendar icon
+                          clearIcon={false}
+                        />
+                     </div> 
+                    </div>
+
+                    {classDetails.classTime.map((cls, index) => (
+                      <div key={index} className="flex flex-col">
+                        <strong className="text-gray-600 font-semibold">
+                        سعر (شهري) مرة في الأسبوع
+                        </strong>
+                        <input
+                          className="rounded-lg "
+                          type="text"
+                          name="classTime"
+                          value={cls.price}
+                          onChange={(e) =>
+                            handlePriceChange(e.target.value, "price", index)
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold  ml-4 mb-2">
+                الوصف
+                </h3>
+                <div
+                  className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 w-full"
+                  style={{ width: "calc(100% - 24px)" }}
+                >
+                  <input
+                    className="rounded-lg w-full"
+                    type="text"
+                    name="description"
+                    multiple
+                
+                    onChange={handleInputChange} // Convert string back to array on change
+                  />
+                </div>
+                <h3 className="text-lg font-semibold  ml-4 mb-2">الوقت</h3>
+                <div
+                  className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative"
+                  style={{ width: "calc(100% - 24px)" }}
+                >
+                  <button
+                    className="absolute top-2 right-2 bg-blue-500 text-white px-4 py-2 rounded"
+                    onClick={handleAddTime}
+                  >
+        إضافة الوقت
+                  </button>
+                  <div className="grid grid-cols-2 gap-4">
+                    {classDetails.classTime.map((date, index) => (
+                      <div key={index} className="">
+                        <strong className="text-gray-600 font-semibold">
+                        تاريخ {index + 1}
+                        </strong>{" "}
+                        <br />
+                        <div className="flex flex-row">
+                          <div className="mr-4">
+                            <strong className="text-gray-600 font-semibold">
+                            اليوم 
+                            </strong>{" "}
+                            <br />
+                            <select
+                              className="rounded-lg"
+                              value={date.day}
+                              onChange={(e) =>
+                                handleTimeChange(e.target.value, "day", index)
+                              }
+                            >
+                            
+<option value="Tuesday">الثلاثاء</option>
+<option value="Wednesday">الأربعاء</option>
+<option value="Thursday">الخميس</option>
+<option value="Friday">الجمعة</option>
+<option value="Saturday">السبت</option>
+<option value="Sunday">الأحد</option> 
+
+
+
+
+
+
+
+                            </select>
+                          </div>
+                          <div className="mr-2">
+                            <strong className="text-gray-600 font-semibold">
+                            وقت البدء 
+                            </strong>{" "}
+                            <br />
+                            <input
+                              className="rounded-lg w-24"
+                              type="text"
+                              name="startTime"
+                              value={date.startTime}
+                              onChange={(e) =>
+                                handleTimeChange(
+                                  e.target.value,
+                                  "startTime",
+                                  index
+                                )
+                              }
+                            />
+                          </div>
+                          <div className="mr-2">
+                            <strong className="text-gray-600 font-semibold">
+                            وقت الانتهاء 
+                            </strong>{" "}
+                            <br />
+                            <input
+                              className="rounded-lg w-24"
+                              type="text"
+                              name="endTime"
+                              value={date.endTime}
+                              onChange={(e) =>
+                                handleTimeChange(
+                                  e.target.value,
+                                  "endTime",
+                                  index
+                                )
+                              }
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <strong className="text-gray-600 font-semibold">
+                            القاعة
+                            </strong>
+                            <select
+                              className="rounded-lg"
+                              name="Court"
+                              value={date.Court}
+                              onChange={(e) =>
+                                handlePriceChange(
+                                  e.target.value,
+                                  "Court",
+                                  index
+                                )
+                              }
+                            >
+                          
+                              {courts.map((court, index) => (
+                                <option key={index} value={court}>
+                                  {court}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                        <button onClick={() => handleRemoveTime(index)}>
+                        إزالة
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold  ml-4 mb-2">
+                إرشادات
+                </h3>
+                <div
+                  className="p-6 mt-4  border rounded-lg ml-4 mr-4 mb-8"
+                  style={{ width: "calc(100% - 24px)" }}
+                >
+                  <div className="grid grid-cols-3 gap-4">
+                    <div>
+                      <strong className="text-gray-600 font-semibold">
+                        Min. students
                       </strong>{" "}
                       <br />
-                      <div className="flex flex-row">
-                        <div className="mr-4">
-                          <strong className="text-gray-600 font-semibold">
-                            Day
-                          </strong>{" "}
-                          <br />
-                          <select
-                            className="rounded-lg"
-                            value={date.day}
-                            onChange={(e) =>
-                              handleTimeChange(e.target.value, "day", index)
-                            }
-                            required
-                          >
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                          </select>
-                        </div>
-                        <div className="mr-2">
-                          <strong className="text-gray-600 font-semibold">
-                            Start Time
-                          </strong>{" "}
-                          <br />
-                          <input
-                            className="rounded-lg w-24"
-                            type="text"
-                            name="startTime"
-                            value={date.startTime}
-                            onChange={(e) =>
-                              handleTimeChange(
-                                e.target.value,
-                                "startTime",
-                                index
-                              )
-                            }
-                            required
-                          />
-                        </div>
-                        <div className="mr-2">
-                          <strong className="text-gray-600 font-semibold">
-                            End Time
-                          </strong>{" "}
-                          <br />
-                          <input
-                            className="rounded-lg w-24"
-                            type="text"
-                            name="endTime"
-                            value={date.endTime}
-                            onChange={(e) =>
-                              handleTimeChange(e.target.value, "endTime", index)
-                            }
-                            required
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <strong className="text-gray-600 font-semibold">
-                            Court
-                          </strong>
-                          <select
-                            className="rounded-lg"
-                            name="Court"
-                            required
-                            onChange={(e) =>
-                              handlePriceChange(e.target.value, "Court", index)
-                            }
-                          >
-                            <option value="">choose a court</option>
-                            {courts.map((court, index) => (
-                              <option key={index} value={court.name}>
-                                {court.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <button onClick={() => handleRemoveTime(index)}>
-                        Remove
-                      </button>
+                      <input
+                        className="rounded-lg"
+                        type="number"
+                        name="minmumNumber"
+                        onChange={handleInputChange}
+                        min={1}
+                     
+                      />
                     </div>
-                  ))}
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold  ml-4 mb-2">Restrictions</h3>
-              <div
-                className="p-6 mt-4  border rounded-lg ml-4 mr-4 mb-8"
-                style={{ width: "calc(100% - 24px)" }}
-              >
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <strong className="text-gray-600 font-semibold">
-                      Min. Players
-                    </strong>{" "}
-                    <br />
-                    <input
-                      className="rounded-lg"
-                      type="number"
-                      name="minmumNumber"
-                      onChange={handleInputChange}
-                      min={1}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <strong className="text-gray-600 font-semibold">
-                      Max. Players
-                    </strong>{" "}
-                    <br />
-                    <input
-                      className="rounded-lg"
-                      type="number"
-                      name="maximumNumber"
-                      onChange={handleInputChange}
-                      min={classDetails.minmumNumber}
-                      required
-                    />
-                  </div>
+                    <div>
+                      <strong className="text-gray-600 font-semibold">
+                        Max. studnets
+                      </strong>{" "}
+                      <br />
+                      <input
+                        className="rounded-lg"
+                        type="number"
+                        name="maximumNumber"
+                        onChange={handleInputChange}
+                        min={classDetails.minmumNumber}
+                 
+                      />
+                    </div>
 
-                  <div>
-                    <strong className="text-gray-600 font-semibold">
-                      Level
-                    </strong>{" "}
-                    <br />
-                    <select
-                      className="rounded-lg"
-                      required
-                      onChange={(e) =>
-                        setClassDetails({
-                          ...classDetails,
-                          level: e.target.value,
-                        })
-                      }
-                    >
-                      <option value="Beginner">Beginner</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                    </select>
-                  </div>
-                  <div>
-                    <strong className="text-gray-600 font-semibold">
-                      Average Age
-                    </strong>{" "}
-                    <br />
-                    <input
-                      className="rounded-lg mt-2"
-                      type="text"
-                      name="age"
-                      onChange={handleInputChange}
-                      required
-                    />
+                    <div>
+                      <strong className="text-gray-600 font-semibold">
+                      عمر المشاركين المتوسط
+                      </strong>{" "}
+                      <br />
+                      <select
+                        className="rounded-lg"
+               
+                        onChange={(e) =>
+                          setClassDetails({
+                            ...classDetails,
+                            level: e.target.value,
+                          })
+                        }
+                      >
+              <option value="Beginner">مبتدئ</option>
+<option value="Intermediate">متوسط</option>
+<option value="Advanced">متقدم</option> 
+                      </select>
+                    </div>
+                    <div>
+                      <strong className="text-gray-600 font-semibold">
+                      متوسط عم
+                      </strong>{" "}
+                      <br />
+                      <input
+                        className="rounded-lg mt-2"
+                        type="text"
+                        name="age"
+                        onChange={handleInputChange}
+          
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative"
-                style={{ width: "calc(100% - 24px)" }}
-              >
-                <h3 className="text-lg font-semibold  ml-4 mb-2">
-                  Participants
-                </h3>
 
-                <ParticipantsHorizontalScroll
-                  classDetails={classDetails}
-                  participants={classDetails.participants}
-                  trainees={trainees}
-                  setClassDetails={setClassDetails}
-                />
-              </div>
-
-              <div className="bg-white w-full">
-                <button
-                  className="ml-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold  py-2 px-4 rounded mb-10"
-                  disabled={isSubmitting}
+                <div
+                  className="p-6 mt-4  border rounded-lg ml-4 mr-4 mb-8"
+                  style={{ width: "calc(100% - 24px)" }}
                 >
-                  Submit
-                </button>
-              </div>
+                  <div>
+                    <h3 className="text-lg font-semibold  ml-4 mb-2">
+                    طلاب
+                    </h3>
+                    <ParticipantsHorizontalScroll
+                      classDetails={classDetails}
+                      participants={classDetails.participants}
+                      trainees={trainees}
+                      setClassDetails={setClassDetails}
+                    />
+                  </div>
+                </div>
+
+                <div className="bg-white w-full">
+                  <button
+                    className="ml-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold  py-2 px-4 rounded mb-10"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                 إرسال
+                  </button>
+                </div>
             </form>
           </div>
         </div>
@@ -2563,7 +2541,8 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-3xl font-semibold  my-4 text-center">Class List</h1>
+ 
+<h1 className="text-3xl font-semibold  my-4 text-center">قائمة الصفوف</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {classes.map((item, index) => (
           <Item

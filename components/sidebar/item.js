@@ -32,19 +32,22 @@ const SidebarItem = ({ item }) => {
   }, [items, path, pathname]);
 
   return (
-    <>  
+    <>
       <div
-className={`flex items-center space-x-2 p-2 rounded-md  rounded-md rounded-md      ${isActive && 'sidebar-Button-blue text-white'}`}
+        className={`flex items-center space-x-2 p-2 rounded-md ${isActive ? 'sidebar-Button-blue text-white' : ''}`}
         onClick={onClick}
+        style={{ direction: 'rtl' }} // Adding direction: 'rtl' for right-to-left alignment
       >
         <div className="flex items-center space-x-2">
-          <Icon size={20} className='w-6 h-6'/>
-          <p className="" style={{ cursor: 'pointer' }}>{name} </p>
+          <Icon size={20} className="w-6 h-6" />
+          <p className="" style={{ cursor: 'pointer' }}>
+            {name}
+          </p>
         </div>
         {items && items.length > 0 && <ChevronDown size={18} />}
       </div>
       {expanded && items && items.length > 0 && (
-        <div className="flex flex-col space-y-1 ml-10">
+        <div className="flex flex-col space-y-1 mr-10" style={{ direction: 'rtl' }}>
           {items.map((item) => (
             <SubMenuItem key={item.path} item={item} />
           ))}

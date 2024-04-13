@@ -13,7 +13,8 @@ import { Button, Eventcalendar, formatDate, Popup, setOptions, Toast,
   CalendarNav,
   CalendarPrev,
   CalendarToday,
-  CalendarNext} from '@mobiscroll/react';
+  CalendarNext,locale,
+  localeAr} from '@mobiscroll/react';
 import { useCallback, useMemo, useRef, useState,useEffect } from 'react';
 import '@mobiscroll/react/dist/css/mobiscroll.min.css'
 import FullCalendar from '@fullcalendar/react';
@@ -26,6 +27,7 @@ import { fetchFirestoreData } from './fetchData';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { useAuth } from '@/context/AuthContext';
 import { MatchDetails } from '../matches/page';
+import { School } from 'lucide-react';
     // Function to calculate the difference in days based on the given day string
     const dayDiff = (day) => {
       const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -139,73 +141,73 @@ const DemoApp = () => {
   ])
   const courtss = useMemo(
     () => [
-    {
-      id: 1,
-      name: 'Court1',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 2,
-      name: 'Court2',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 3,
-      name: 'Court3',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 4,
-      name: 'Court4',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 5,
-      name: 'Court5',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 6,
-      name: 'Court6',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 7,
-      name: 'Court7',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 8,
-      name: 'Court8',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 9,
-      name: 'Court9',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 10,
-      name: 'Court10',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 11,
-      name: 'Court11',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 12,
-      name: 'Court12',
-      cssClass: 'md-col-tick-border',
-    },
-    {
-      id: 13,
-      name: 'Court13',
-      cssClass: 'md-col-tick-border',
-    },
-  ],
-  [],
+      {
+        id: 1,
+        name: 'فصل 1',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 2,
+        name: 'فصل 2',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 3,
+        name: 'فصل 3',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 4,
+        name: 'فصل 4',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 5,
+        name: 'فصل 5',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 6,
+        name: 'فصل 6',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 7,
+        name: 'فصل 7',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 8,
+        name: 'فصل 8',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 9,
+        name: 'فصل 9',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 10,
+        name: 'فصل 10',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 11,
+        name: 'فصل 11',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 12,
+        name: 'فصل 12',
+        cssClass: 'md-col-tick-border',
+      },
+      {
+        id: 13,
+        name: 'فصل 13',
+        cssClass: 'md-col-tick-border',
+      },
+    ],
+    [],
   );
   useEffect(() => {
       const fetchData = async () => {
@@ -470,9 +472,7 @@ setReservation((prev)=>({...prev,date:startDate,startTime:startTimeString,durati
       (resource) => (
         <div className="flex flex-row justify-center align-center items-center " >
                     <div className="mr-2"  >
-          <svg width="20px" height="20px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-<path fill="#000000" d="M120.8 55L87.58 199h18.52l29.1-126h18.2l-20.6 126h18.3l10.1-62H247v62h18v-62h85.8l10.1 62h18.3L358.6 73h18.2l29.1 126h18.5L391.2 55H120.8zm50.9 18h168.6l7.6 46H164.1l7.6-46zM73 217v30h366v-30H73zm-.64 48L20.69 489H491.3l-51.7-224h-18.5l47.6 206h-45L390 265h-18.3l14.2 87H265v-87h-18v87H126.1l14.2-87H122L88.35 471H43.31l47.56-206H72.36zm50.74 105h265.8l16.5 101H106.6l16.5-101z"/>
-          </svg>
+                    <School size={20}/> 
             
             </div>
           <div className="resource-name">{resource.name}</div>
@@ -544,7 +544,7 @@ setReservation((prev)=>({...prev,date:startDate,startTime:startTimeString,durati
         dragTimeStep={30}
     renderResource={renderCustomResource}
     cssClass="md-switching-view-cont"
-          new
+          locale={localeAr}
       />
     
     

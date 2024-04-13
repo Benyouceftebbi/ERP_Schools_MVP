@@ -402,363 +402,342 @@ function generateTimeArrayFromDate() {
   return timeArray;
 }
   return    (
-    <div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10 z-50" style={{ height: '100%' }}>
-      <button onClick={()=>{handleClose();removeEvent()}} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+<div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10 z-50" style={{ height: '100%' }}>
+  <button onClick={()=>{handleClose();removeEvent()}} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
 
-      <div className="w-4/12 h-full bg-white border rounded-t flex flex-col justify-start items-start">
+  <div className="w-4/12 h-full bg-white border rounded-t flex flex-col justify-start items-start">
 
     <div className='flex'>
-        <h2 className="text-xl font-bold ml-4 mt-4 mb-6">Match Details</h2>
-     
-
+      <h2 className="text-xl font-bold ml-4 mt-4 mb-6">تفاصيل الصَفّ</h2>
     </div>
     {/* Form inputs */}
     <div  className="p-6 mt-4 border h-full rounded-lg ml-4 mr-4 mb-8 overflow-y-auto" style={{ width: 'calc(100% - 24px)' }}>
-          <div className="ml-4 grid grid-cols-2 gap-4">
-          <div className="flex flex-col">
-              <strong>Date</strong>
-
-
-    <DatePicker
-   selected={reservation.date.seconds?new Date(reservation.date.toDate()):reservation.date}
-   required 
-      onChange={(date) => {
-        setReservation({ ...reservation, date: date })
-      // Close calendar after date selection
-      }}
-
-  className='rounded-lg flex flex-col w-full'
-  calendarClassName='flex flex-start'
-    /> 
-  
-            </div>
-        
+      <div className="ml-4 grid grid-cols-2 gap-4">
+        <div className="flex flex-col">
+          <strong>التاريخ</strong>
+          <DatePicker
+            selected={reservation.date.seconds?new Date(reservation.date.toDate()):reservation.date}
+            required 
+            onChange={(date) => {
+              setReservation({ ...reservation, date: date })
+              // Close calendar after date selection
+            }}
+            className='rounded-lg flex flex-col w-full'
+            calendarClassName='flex flex-start'
+          /> 
+        </div>
  
-            <div className="flex flex-col">
-            <strong>Select start time</strong>
-            <select
-  id="startTime"
-  name="startTime"
-  value={reservation.startTime}
-  onChange={handleInputChange}
-  className='rounded-lg'
-  required 
->
-{generateTimeArrayFromDate().map((time,index) => (
-      <option key={index} value={time}>{time}</option> 
-)
-
-
-    )
-  }
-</select>
-  </div>
+        <div className="flex flex-col">
+          <strong>تحديد وقت البدء</strong>
+          <select
+            id="startTime"
+            name="startTime"
+            value={reservation.startTime}
+            onChange={handleInputChange}
+            className='rounded-lg'
+            required 
+          >
+            {generateTimeArrayFromDate().map((time,index) => (
+              <option key={index} value={time}>{time}</option> 
+            ))}
+          </select>
+        </div>
   
-  <div className="flex flex-col">
-            <strong>Duration</strong>
-            <select
-               required 
-    name="duration"
-    value={reservation.duration}
-    onChange={(e)=>{handleInputChange(e);  setReservation(prevReservation => ({
-      ...prevReservation,
-      Price: priceMap[e.target.value],
-    }));}}
-    className="rounded-lg"
-  >
-    <option value="">Select Duration</option>
-    <option value={60}>
-        60 Minutes
-      </option>
-      <option  value={90}>
-        90 Minutes
-      </option>
-      <option   value={120}>
-        120 Minutes
-      </option>
-  </select>
-  </div>
-  <div className="flex flex-col">
-            <strong>Court</strong>
-            <select
-    name="courtName"
-    value={reservation.courtName}
-    onChange={handleInputChange}
-    className="rounded-lg"
-    required 
-  >
-    {availableCourts.map((court, index) => (
-      <option key={index} value={court.name}>
-        {court.name}
-      </option>
-    ))}
-  </select>
-  </div>
-<div className="flex flex-col">
-            <strong>Select Coach</strong>
-<AutosuggestComponent trainers={trainers} setReservation={setReservation} reservation={reservation} name={reservation.coachname} field={'coachname'}/>
-  </div>
-  {reservation.coachname !== "coach" && reservation.coachname !== "" && ( <div className="flex flex-col ">
-            
- <div className="flex flex-row justify-between">
-
-            <strong>Coach payout (per match)</strong>
-            <Switch onChange={()=>{ setReservation(prevReservation => ({
-  ...prevReservation,
-  coachPaid: !prevReservation.coachPaid,
+        <div className="flex flex-col">
+          <strong>المدة</strong>
+          <select
+            required 
+            name="duration"
+            value={reservation.duration}
+            onChange={(e)=>{handleInputChange(e);  setReservation(prevReservation => ({
+              ...prevReservation,
+              Price: priceMap[e.target.value],
+            }));}}
+            className="rounded-lg"
+          >
+            <option value="">اختر المدة</option>
+            <option value={60}>
+              60 دقيقة
+            </option>
+            <option  value={90}>
+              90 دقيقة
+            </option>
+            <option   value={120}>
+              120 دقيقة
+            </option>
+          </select>
+        </div>
   
-}));
-setAA(prevReservation => ({
-  ...prevReservation,
-  coachPaid: !reservation.coachPaid,
-}));}} checked={reservation.coachPaid} />
-     </div>
-   {reservation.coachPaid &&   (<input
-        className="rounded-lg"
-        type="number"
-        name="coachPayout"
-        
-        value={reservation.coachPayout}
-        onChange={handleInputChange}
-        
-      />)}
-  </div>)}
-<div className="flex flex-col">
-            <strong>Select Consumer</strong>
-<AutosuggestComponent trainers={trainees} setReservation={setReservation} reservation={reservation} name={reservation.name} field={'name'}/>
-  </div>
+        <div className="flex flex-col">
+          <strong>القِسم</strong>
+          <select
+            name="courtName"
+            value={reservation.courtName}
+            onChange={handleInputChange}
+            className="rounded-lg"
+            required 
+          >
+            {availableCourts.map((court, index) => (
+              <option key={index} value={court.name}>
+                {court.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div className="flex flex-col">
+          <strong>تحديدالمعلِّم</strong>
+          <AutosuggestComponent trainers={trainers} setReservation={setReservation} reservation={reservation} name={reservation.coachname} field={'coachname'}/>
+        </div>
 
-<div className="flex flex-col">
-            <strong>Payment</strong>
-            <select
-    name="payment"
-    value={reservation.payment}
-    onChange={handleInputChange}
-    className="rounded-lg"
-    required 
-  >
-
-    <option value="cash">
-        Cash
-      </option>
-      <option  value="card">
-        Card
-      </option>
-  </select>
-  </div>
-  <div className="flex flex-col">
-            <strong>Discount</strong>
-            <select
-    name="discount"
-
-    onChange={handleInputChange}
-    className="rounded-lg"
-   
-  >
-      <option value="">
-        No discount
-      </option>
-{discounts.map((discount)=>(
-  <option value={JSON.stringify(discount)}>
-        {discount.name}
-      </option>
-))}
-    
-  </select>
-  </div> 
-  <div className="flex flex-col">
-            <strong>Price</strong>
-            <input
-        className="rounded-lg"
-        type="text"
-        name="Price"
-        value={reservation.price}
-        readOnly
-
-      />
-
-  </div>
-  <div className="flex flex-col">
-              <strong>Description</strong>
-              <input
-          className="rounded-lg"
-          type="text"
-          name="description"
-          value={reservation.description}
-          onChange={handleInputChange}
-          required 
-        />
-  
-    </div>
-    <div className="flex flex-col ">
-            
-              <div className="flex flex-row justify-between">
-
-              <strong>Reaccuring</strong>
+        {reservation.coachname !== "مدرب" && reservation.coachname !== "" && (
+          <div className="flex flex-col">
+            <div className="flex flex-row justify-between">
+              <strong>أجر المعلِّم (لكل مباراة)</strong>
               <Switch onChange={()=>{ setReservation(prevReservation => ({
-    ...prevReservation,
-    reaccuring: !prevReservation.reaccuring,
-    
-  }));
-  setAA(prevReservation => ({
-    ...prevReservation,
-    reaccuring: !reservation.reaccuring,
-  }));}} checked={reservation.reaccuring} />
-       </div>
-     {reservation.reaccuring &&   (<input
-          className="rounded-lg"
-          type="number"
-          name="reaccurance"
-          placeholder='Number of weeks'
-          value={reservation.reaccurance}
-          onChange={handleInputChange}
-          
-        />)}
-    </div>
-
-
-{reservation.date.seconds &&(  <button onClick={()=>  setShowRefundModal(true)} className="mb-3 px-4 py-2 bg-red-500 text-white rounded-md">Cancel a Match</button>)}
-<Modal
-  isOpen={showRefundModal}
-  onRequestClose={() => setShowRefundModal(false)}
-  contentLabel="Refund Payment Modal"
-  ariaHideApp={false}
-  style={{
-    content: {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      maxWidth: '90vw', // Set maximum width relative to viewport width
-      maxHeight: '90vh', // Set maximum height relative to viewport height
-      overflow: 'auto', // Enable scrolling if content exceeds modal size
-      backgroundColor: 'white',
-      padding: '1rem',
-      borderRadius: '0.5rem',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
-      zIndex: 99999,
-    },
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 99999,
-    },
-  }}
->
-        <h2 className="text-xl font-bold mb-4">Refund Payment</h2>
-        <p className="mb-4">Do you want to refund the payment?</p>
-        <div className="flex justify-between mt-4">
-          <button
-            className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
-            onClick={handleConfirmRefund}
-          >
-            Yes
-          </button>
-          <button
-            className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600"
-            onClick={cancelMatch}
-          >
-            No
-          </button>
-          <button
-            className="px-4 py-2 rounded bg-red-500 text-white hover:bg-blue-600"
-            onClick={()=>setShowRefundModal(false)}
-          >
-            Cancel Refund
-          </button>
-        </div>
-      </Modal>
-          </div>
-          <div className="flex flex-col my-5">
-          <strong>Add Participants </strong>
-          
-
-<div class="relative overflow-x-auto my-5">
-<table className="w-full divide-y divide-gray-200 mb-5">
-          <thead className="bg-gray-50">
-            <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                    Player Name
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                    Payment method
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        {participants.map((participant, index) => (
-            <tr  key={index}>
-               
-
-               <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-             {participant.name}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-                {participant.payment}
-                </td>
-        
-            </tr>
-              ))}
-        </tbody>
-        {participants.length < 4 &&(
-        <tr >
-               
-
-               <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-               <AutosuggestComponent
-                trainers={trainees}
-                setReservation={setParticipant}
-                reservation={newParticipant}
-                name={newParticipant.name}
-                field={'name'}
-              />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-                <select
-    name="payment"
-    value={newParticipant.payment}
-    onChange={handleParticipantChange}
-    className="px-3 py-2 border rounded-md w-full sm:w-auto w-full"
-    style={{width:'150px'}}
-    required 
-  >
-
-    <option value="full">
-        Full
-      </option>
-      <option  value="split">
-        Split
-      </option>
-  </select>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
-                <button
-                 type="button"
-                className="mb-3 button-blue rounded-md mr-4 "
-                onClick={() => addParticipant(newParticipant)}
-
-              >
-                Add Participant
-              </button>
-              </td>
-            </tr>
-            )}
-            </table>
-</div>
-        
+                ...prevReservation,
+                coachPaid: !prevReservation.coachPaid,
+              }));
+              setAA(prevReservation => ({
+                ...prevReservation,
+                coachPaid: !reservation.coachPaid,
+              }));}} checked={reservation.coachPaid} />
             </div>
-            <button type="submit" onClick={handleSubmit} className="mb-3 px-4 py-2 bg-blue-500 text-white rounded-md">Submit Reservation</button>
+            {reservation.coachPaid && (
+              <input
+                className="rounded-lg"
+                type="number"
+                name="coachPayout"
+                value={reservation.coachPayout}
+                onChange={handleInputChange}
+              />
+            )}
+          </div>
+        )}
+
+        <div className="flex flex-col">
+          <strong>تحديد تلميذ</strong>
+          <AutosuggestComponent trainers={trainees} setReservation={setReservation} reservation={reservation} name={reservation.name} field={'name'}/>
         </div>
 
+        <div className="flex flex-col">
+          <strong>الدفع</strong>
+          <select
+            name="payment"
+            value={reservation.payment}
+            onChange={handleInputChange}
+            className="rounded-lg"
+            required 
+          >
+            <option value="cash">
+              نقدي
+            </option>
+            <option  value="card">
+              بطاقة
+            </option>
+          </select>
+        </div>
+
+        <div className="flex flex-col">
+          <strong>الخصم</strong>
+          <select
+            name="discount"
+            onChange={handleInputChange}
+            className="rounded-lg"
+          >
+            <option value="">
+              بدون خصم
+            </option>
+            {discounts.map((discount)=>(
+              <option value={JSON.stringify(discount)}>
+                {discount.name}
+              </option>
+            ))}
+          </select>
+        </div> 
+
+        <div className="flex flex-col">
+          <strong>السعر</strong>
+          <input
+            className="rounded-lg"
+            type="text"
+            name="Price"
+            value={reservation.price}
+            readOnly
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <strong>الوصف</strong>
+          <input
+            className="rounded-lg"
+            type="text"
+            name="description"
+            value={reservation.description}
+            onChange={handleInputChange}
+            required 
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex flex-row justify-between">
+            <strong>مكرر</strong>
+            <Switch onChange={()=>{ setReservation(prevReservation => ({
+              ...prevReservation,
+              reaccuring: !prevReservation.reaccuring,
+            }));
+            setAA(prevReservation => ({
+              ...prevReservation,
+              reaccuring: !reservation.reaccuring,
+            }));}} checked={reservation.reaccuring} />
+          </div>
+          {reservation.reaccuring && (
+            <input
+              className="rounded-lg"
+              type="number"
+              name="reaccurance"
+              placeholder='عدد الأسابيع'
+              value={reservation.reaccurance}
+              onChange={handleInputChange}
+            />
+          )}
+        </div>
+
+        {reservation.date.seconds && (
+          <button onClick={()=>  setShowRefundModal(true)} className="mb-3 px-4 py-2 bg-red-500 text-white rounded-md">إلغاء المباراة</button>
+        )}
+
+        <Modal
+          isOpen={showRefundModal}
+          onRequestClose={() => setShowRefundModal(false)}
+          contentLabel="Refund Payment Modal"
+          ariaHideApp={false}
+          style={{
+            content: {
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              maxWidth: '90vw', // Set maximum width relative to viewport width
+              maxHeight: '90vh', // Set maximum height relative to viewport height
+              overflow: 'auto', // Enable scrolling if content exceeds modal size
+              backgroundColor: 'white',
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+              zIndex: 99999,
+            },
+            overlay: {
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 99999,
+            },
+          }}
+        >
+          <h2 className="text-xl font-bold mb-4">إعادة المبلغ</h2>
+          <p className="mb-4">هل ترغب في إعادة المبلغ؟</p>
+          <div className="flex justify-between mt-4">
+            <button
+              className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
+              onClick={handleConfirmRefund}
+            >
+              نعم
+            </button>
+            <button
+              className="px-4 py-2 rounded bg-gray-500 text-white hover:bg-gray-600"
+              onClick={cancelMatch}
+            >
+              لا
+            </button>
+            <button
+              className="px-4 py-2 rounded bg-red-500 text-white hover:bg-blue-600"
+              onClick={()=>setShowRefundModal(false)}
+            >
+              إلغاء الإعادة
+            </button>
+          </div>
+        </Modal>
       </div>
+
+      <div className="flex flex-col my-5">
+        <strong>إضافة المشاركين</strong>
+
+        <div class="relative overflow-x-auto my-5">
+          <table className="w-full divide-y divide-gray-200 mb-5">
+            <thead className="bg-gray-50">
+              <tr>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  اسم اللاعب
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  طريقة الدفع
+                </th>
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  الإجراء
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {participants.map((participant, index) => (
+                <tr  key={index}>
+                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
+                    {participant.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
+                    {participant.payment}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            {participants.length < 4 &&(
+              <tr >
+                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
+                  <AutosuggestComponent
+                    trainers={trainees}
+                    setReservation={setParticipant}
+                    reservation={newParticipant}
+                    name={newParticipant.name}
+                    field={'name'}
+                  />
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
+                  <select
+                    name="payment"
+                    value={newParticipant.payment}
+                    onChange={handleParticipantChange}
+                    className="px-3 py-2 border rounded-md w-full sm:w-auto w-full"
+                    style={{width:'150px'}}
+                    required 
+                  >
+                    <option value="full">
+                      كامل
+                    </option>
+                    <option  value="split">
+                      مقسم
+                    </option>
+                  </select>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap" style={{ color: '#737373' }}>
+                  <button
+                    type="button"
+                    className="mb-3 button-blue rounded-md mr-4 "
+                    onClick={() => addParticipant(newParticipant)}
+                  >
+                    إضافة مشارك
+                  </button>
+                </td>
+              </tr>
+            )}
+          </table>
+        </div>
+      </div>
+      <button type="submit" onClick={handleSubmit} className="mb-3 px-4 py-2 bg-blue-500 text-white rounded-md">إرسال الحجز</button>
     </div>
+  </div>
+</div>
   )
 }
 const ManageMatchesPage = () => {

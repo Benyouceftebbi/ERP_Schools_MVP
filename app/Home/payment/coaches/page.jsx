@@ -19,7 +19,7 @@ const AttendanceChart = ({ trainersData }) => {
 
   return ( 
     <div>
-     <h2 className="text-3xl font-bold mb-10 ml-2">Total Class hours by Trainers</h2>
+     <h2 className="text-3xl font-bold mb-10 mr-2">إجمالي ساعات الصفوف حسب المعلم</h2>
  
     <ResponsiveContainer width="100%" height={400} >
       <BarChart data={trainersData} >
@@ -712,7 +712,7 @@ let u=updatedCommissionss;
   return(
     <div className="fixed inset-0 flex bg-gray-600 bg-opacity-50 justify-end items-center   " style={{ height: '100%' }}>
      
-     <button onClick={()=>setShowDetails(false)} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+     <button onClick={()=>setShowDetails(false)} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
     </svg>
@@ -721,26 +721,26 @@ let u=updatedCommissionss;
           <div className="w-7/12 h-auto bg-white border rounded-t flex flex-col justify-start items-start overflow-y-auto" style={{ height: '100%' }}>
 
           <div className='flex bg-white h-auto'>
-              <h2 className="text-xl font-bold ml-4 mt-4 mb-6">Coach Payouts</h2>
-              <div className='ml-72 h-full' />
+              <h2 className="text-xl font-bold mr-4 mt-4 mb-6 pr-4">مدفوعات المعلم</h2>
+              <div className='mr-72 h-full' />
               <div className="mt-4" >
-                <strong className='ml-2 mt-4 mb-6'>Coach ID</strong>
-                <input className="rounded-lg ml-5" type="text" readOnly value={selectedCoach.id} />
+                <strong className='mr-2 mt-4 mb-6'>رقم المعلم</strong>
+                <input className="rounded-lg mr-5" type="text" readOnly value={selectedCoach.id} />
               </div>
             </div>
          
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
-            <div className="ml-4 grid grid-cols-3 gap-4">
+            <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
+            <div className="mr-4 grid grid-cols-3 gap-4">
                 <div>
-                  <strong>Name</strong> <br />
+                  <strong>الاسم</strong> <br />
                   <input className="rounded-lg"  value={selectedEmployee.selectedCoach.nameandsurname} readOnly />
                 </div>
                 <div>
-                  <strong>Position</strong> <br />
+                  <strong> الوظيفة</strong> <br />
                   <input className="rounded-lg " type="text" readOnly value={selectedEmployee.selectedCoach.position} />
                 </div>
                  <div className='flex flex-col' >
-                 <strong>Salary Type</strong> 
+                 <strong>نوع الراتب </strong> 
                         <select
                     name='salaryType'
                     value={selectedEmployee.selectedCoach.salaryType}
@@ -750,92 +750,110 @@ let u=updatedCommissionss;
                     }}
                           className="rounded-lg "
                         >
-                                      <option value="">Select salary type</option>
-                          <option value="monthly">Monthly</option>
-                          <option value="hourly">Hourly</option>
-                  
+                      <option value="">اختر نوع الراتب</option>
+<option value="monthly">شهري</option>
+<option value="hourly">بالساعة</option>
                         </select>
                       </div>
-                {selectedEmployee.selectedCoach.salaryType === 'monthly' && (<div>
-                  <strong>Salary per Month</strong> <br />
-                  <input className="rounded-lg" type="number" name='salary'
-value={selectedEmployee.selectedCoach.salary}
-onChange={(e) => {
-  const { name, value } = e.target;
-  setSelectedEmployee((prev) => ({ ...prev, selectedCoach: { ...prev.selectedCoach, [name]: value } }));
-}}/>
-                </div>)}     
-                {selectedEmployee.selectedCoach.salaryType === 'hourly' &&   (<div>
-                  <strong>Hourly rate</strong> <br />
-                  <input className="rounded-lg" type="number" name='hourly'
-value={selectedEmployee.selectedCoach.hourly}
-onChange={(e) => {
-  const { name, value } = e.target;
-  setSelectedEmployee((prev) => ({ ...prev, selectedCoach: { ...prev.selectedCoach, [name]: value } }));
-}}/>
-                </div>)}
+                      {selectedEmployee.selectedCoach.salaryType === 'monthly' && (
+  <div>
+    <strong>الراتب الشهري</strong> <br />
+    <input
+      className="rounded-lg"
+      type="number"
+      name='salary'
+      value={selectedEmployee.selectedCoach.salary}
+      onChange={(e) => {
+        const { name, value } = e.target;
+        setSelectedEmployee((prev) => ({
+          ...prev,
+          selectedCoach: { ...prev.selectedCoach, [name]: value }
+        }));
+      }}
+    />
+  </div>
+)}
+                {selectedEmployee.selectedCoach.salaryType === 'hourly' && (
+  <div>
+    <strong>الأجر بالساعة</strong> <br />
+    <input
+      className="rounded-lg"
+      type="number"
+      name='hourly'
+      value={selectedEmployee.selectedCoach.hourly}
+      onChange={(e) => {
+        const { name, value } = e.target;
+        setSelectedEmployee((prev) => ({
+          ...prev,
+          selectedCoach: { ...prev.selectedCoach, [name]: value }
+        }));
+      }}
+    />
+  </div>
+)}
+
               
               </div>
             </div>
             <div className='flex flex-row self-end px-4'>
-            <div>
-             <strong className='mr-2 mt-4 mb-6'>Start Date : </strong>
-                  <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        selectsStart
-        startDate={startDate}
-        endDate={endDate}
-        maxDate={endDate}
-        className="rounded-lg" 
-        dateFormat="dd/MM/yyyy"
-      />
-            </div>
-            <div>
-             <strong className='ml-2 mt-4 mb-6'>End Date :</strong>
-      <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
-        selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
-        maxDate={today}
-        className="rounded-lg ml-5" 
-        dateFormat="dd/MM/yyyy"
-      />
-      </div>
-    </div>
-    <div colSpan="2" className="px-6 py-6 text-right pr-10 font-bold text-3xl text-black-500 uppercase tracking-wider" style={{  width: '100%', display: 'block' }}>
-          Total Payout: ${salary+(selectedEmployee.others.reduce((acc, employee) => acc +  parseInt(employee.amount,10), 0)) + (selectedEmployee.commissions.reduce((acc, employee) => acc +  parseInt((employee.amount*employee.rate)/100,10), 0))}
+  <div>
+    <strong className='mr-2 mt-4 mb-6'>تاريخ البدء :</strong>
+    <DatePicker
+      selected={startDate}
+      onChange={(date) => setStartDate(date)}
+      selectsStart
+      startDate={startDate}
+      endDate={endDate}
+      maxDate={endDate}
+      className="rounded-lg" 
+      dateFormat="dd/MM/yyyy"
+    />
+  </div>
 
-        </div>
+  <div>
+    <strong className='mr-2 mt-4 mb-6'>تاريخ الانتهاء :</strong>
+    <DatePicker
+      selected={endDate}
+      onChange={(date) => setEndDate(date)}
+      selectsEnd
+      startDate={startDate}
+      endDate={endDate}
+      minDate={startDate}
+      maxDate={today}
+      className="rounded-lg mr-5" 
+      dateFormat="dd/MM/yyyy"
+    />
+  </div>
+</div>
+  
+<div colSpan="2" className="px-6 py-6 text-right pr-10 font-bold text-3xl text-black-500 uppercase tracking-wider" style={{ width: '100%', display: 'block' }}>
+  إجمالي المدفوعات: ${salary + (selectedEmployee.others.reduce((acc, employee) => acc + parseInt(employee.amount, 10), 0)) + (selectedEmployee.commissions.reduce((acc, employee) => acc + parseInt((employee.amount * employee.rate) / 100, 10), 0))}
+</div>
  
             
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
-              <h3 className="text-lg font-bold mb-4">Classes</h3>
-              <div className="table-container " style={{ overflowY: 'auto', maxHeight: '200px', width:'100%'}}>
-                <table className="w-full min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        class
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       start
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       end
-                      </th>
-                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       duration
-                      </th>
-                    </tr>
-                  </thead>
-
+        <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
+  <h3 className="text-lg font-bold mb-4">الصفوف</h3>
+  <div className="table-container" style={{ overflowY: 'auto', maxHeight: '200px', width: '100%' }}>
+    <table className="w-full min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            الصف
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            التاريخ
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            البداية
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            النهاية
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            المدة
+          </th>
+        </tr>
+      </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                   {selectedEmployee.classesAttendance.map((attendance,index) => (
 
@@ -857,30 +875,30 @@ onChange={(e) => {
               </div>
     
         <div colSpan="2" className="px-6 py-3 text-right pr-10 font-medium text-gray-500 uppercase tracking-wider" style={{ borderTopWidth: '2px', width: '100%', display: 'block' }}>
-          Salary: ${salary}
+        الراتب: ${salary}
         </div>
            
             </div>
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 bg-white" style={{ width: 'calc(100% - 24px)' }}>
-              <h3 className="text-lg font-bold mb-4">Attendance</h3>
-              <div className="table-container " style={{overflowY: 'auto', maxHeight: '200px', width:'100%'}}>
-                <table className="w-full min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Time In
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       Time Out
-                      </th>
-                         <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       duration
-                      </th>
-                    </tr>
-                  </thead>
+            <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8 bg-white" style={{ width: 'calc(100% - 24px)' }}>
+  <h3 className="text-lg font-bold mb-4">الحضور</h3>
+  <div className="table-container" style={{ overflowY: 'auto', maxHeight: '200px', width: '100%' }}>
+    <table className="w-full min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            التاريخ
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            الدخول
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            الخروج
+          </th>
+          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            المدة
+          </th>
+        </tr>
+      </thead>
 
                   <tbody className="bg-white divide-y divide-gray-200">
                   {selectedEmployee.attendances.map((attendance,index) => (
@@ -930,29 +948,29 @@ onChange={(e) => {
                     
               </div>
             </div>
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
-              <h3 className="text-lg font-bold mb-4">Salaries</h3>
-              <div className="table-container " style={{ overflowY: 'auto', maxHeight: '200px', width:'100%'}}>
-                <table className="w-full min-w-full divide-y divide-gray-200" id='salary'>
-                  <thead className="bg-gray-50">
-                    <tr>
-                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       amount
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       payout type
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       Description
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       action
-                      </th>
-                    </tr>
-                  </thead>
+            <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
+  <h3 className="text-lg font-bold mb-4">الرواتب</h3>
+  <div className="table-container" style={{ overflowY: 'auto', maxHeight: '200px', width: '100%' }}>
+    <table className="w-full min-w-full divide-y divide-gray-200" id='salary'>
+      <thead className="bg-gray-50">
+        <tr>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            التاريخ
+          </th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            المبلغ
+          </th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            نوع الدفع
+          </th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            الوصف
+          </th>
+          <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+            الإجراء
+          </th>
+        </tr>
+      </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                   {selectedEmployee.salary.map((salary,index) => (
 
@@ -981,7 +999,7 @@ onChange={(e) => {
         startDate={startDate}
         endDate={endDate}
  
-        className="rounded-lg ml-5 w-40" 
+        className="rounded-lg mr-5 w-40" 
       />
 </div>
  
@@ -1009,17 +1027,17 @@ onChange={(e) => {
     id='cssassas'
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(salary.status)}`}
   >
-    <option value="">payout type</option>
-    <option value="bank">Bank</option>
-    <option value="cash">Cash</option>
+    <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
 
   </select></td>
 <td className="px-6 py-4 max-w-20 overflow-wrap break-word overflow-hidden ">{salary.description}</td>
 <td className="px-6 py-4 whitespace-nowrap align-center justify-center">
 <div className="flex  justify-center">
-{!salary.removed ?(               <button className="px-3 py-1 button-red   mr-2"  onClick={()=>handleRemove(salary,selectedEmployee.salary,`salary`)}>Remove</button>
+{!salary.removed ?(               <button className="px-3 py-1 button-red   mr-2"  onClick={()=>handleRemove(salary,selectedEmployee.salary,`salary`)}>إزالة</button>
 ):
-         (<button className="px-3 py-1  button-red-removed rounded mr-2" disabled={true}>Removed</button>)   }
+         (<button className="px-3 py-1  button-red-removed rounded ml-2" disabled={true}>تمت الإزالة</button>)   }
      
             </div>
 
@@ -1050,7 +1068,7 @@ onChange={(e) => {
     />
           </div>
           <div>
-           <strong className='ml-2 mt-4 mb-6'>to :</strong>
+           <strong className='mr-2 mt-4 mb-6'>to :</strong>
     <DatePicker
       selected={newSalaryDetails.to.toDate ? newSalaryDetails.to.toDate().toLocaleDateString(): newSalaryDetails.to.toLocaleDateString()}
       onChange={(date) => setNewSalaryDetails((prev)=>({
@@ -1060,7 +1078,7 @@ onChange={(e) => {
       startDate={startDate}
       endDate={endDate}
 
-      className="rounded-lg ml-5" 
+      className="rounded-lg mr-5" 
     />
     </div>
   </div>
@@ -1083,9 +1101,9 @@ onChange={(e) => {
 
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(newSalaryDetails.status)}`}
   >
-    <option value="">payout type</option>
-    <option value="bank">Bank</option>
-    <option value="cash">Cash</option>
+    <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
 
   </select>
 
@@ -1109,7 +1127,7 @@ onChange={(e) => {
      
               </div>
               <div colSpan="2" className="px-6 py-3 text-right  font-medium text-gray-500 uppercase tracking-wider" style={{ borderTopWidth: '2px', width: '100%', display: 'block' }}>
-          Total Salaries: ${  (selectedEmployee.salary.reduce((acc, employee) => acc +  parseInt(employee.amount,10), 0)).toLocaleString()}
+              الرواتب الإجمالية: ${  (selectedEmployee.salary.reduce((acc, employee) => acc +  parseInt(employee.amount,10), 0)).toLocaleString()}
         </div>
                       {!showAddRowSalary? (
                         <>
@@ -1117,7 +1135,7 @@ onChange={(e) => {
                           onClick={handleAddRowSalary}
                           className="button-white  mt-5 mr-5"
                         >
-                          Add Salary
+                         إضافة راتب
                         </button>
                          {selectedEmployee.salary !=orginal.salary && (
                          <>
@@ -1126,14 +1144,14 @@ onChange={(e) => {
                      
                            className="button-blue  mt-5"
                          >
-                          submit Changes
+                      تقديم التغييرات
                          </button>
                          <button
                            onClick={()=> setSelectedEmployee(orginal)}
                      
-                           className="bg-gray-500 text-black-500  font-bold mt-5 ml-5 border rounded-lg px-5 py-2"
+                           className="bg-gray-500 text-black-500  font-bold mt-5 mr-5 border rounded-lg px-5 py-2"
                          >
-                          Cancel Changes
+                 لغاء التغييرات
                          </button>
                          </> )}  
                         </>
@@ -1144,38 +1162,38 @@ onChange={(e) => {
                 onClick={handleSaveSalary}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
               >
-                Save
+        حفظ
               </button>
               <button
                 onClick={handleCancelAddSalaryRow}
                 className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               >
-                Cancel
+      إلغاء
               </button></>
                       )}
- <button      className="button-excel  ml-5 absolute right-4 top-2" onClick={()=>exportToExcelSalary(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'salary')}>Import</button>
+ <button      className="button-excel  mr-5 absolute left-4 top-2" onClick={()=>exportToExcelSalary(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'salary')}>تحميل</button>
 
             </div>
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
-              <h3 className="text-lg font-bold mb-4">Other Activities</h3>
+            <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
+              <h3 className="text-lg font-bold mb-4">لأنشطة الأخرى</h3>
               <div className="table-container " style={{ overflowY: 'auto', maxHeight: '200px', width:'100%'}}>
                 <table className="w-full min-w-full divide-y divide-gray-200" id='payouts'>
                   <thead className="bg-gray-50">
                     <tr>
                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        description
+                      الوصف
                       </th>
                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       amount
+                      المبلغ
                       </th>
                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       payout type
+                      نوع الدفع
                       </th>
                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       date
+                      التاريخ
                       </th>
                       <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       action
+                      الإجراء
                       </th>
                     </tr>
                   </thead>
@@ -1205,9 +1223,9 @@ onChange={(e) => {
     
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(other.status)}`}
   >
-    <option value="">payout type</option>
-    <option value="bank">Bank</option>
-    <option value="cash">Cash</option>
+ <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
 
   </select></td>
 {other.date   && (         <td className="px-6 py-4 whitespace-nowrap text-center">{other.date.toDate ? other.date.toDate().toLocaleDateString(): other.date.toLocaleDateString()}</td>)    }
@@ -1215,8 +1233,8 @@ onChange={(e) => {
 <td className="px-6 py-4 whitespace-nowrap align-center justify-center">
 <div className="flex  justify-center">
                   
-         {!other.removed ?(    <button className="px-3 py-1 button-red rounded mr-2"  onClick={()=>handleRemove(other,selectedEmployee.others,`others`)}>Remove</button>):
-         (<button className="px-3 py-1  button-red-removed mr-2"  disabled={true}>Removed</button>)   }
+         {!other.removed ?(    <button className="px-3 py-1 button-red rounded mr-2"  onClick={()=>handleRemove(other,selectedEmployee.others,`others`)}>إزالة</button>):
+         (<button className="px-3 py-1  button-red-removed ml-2"  disabled={true}>تمت الإزالة</button>)   }
      
             </div>
 
@@ -1253,9 +1271,9 @@ onChange={(e) => {
     
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(newOtherDetails.payment)}`}
   >
-    <option value="">payout type</option>
-    <option value="bank">Bank</option>
-    <option value="cash">Cash</option>
+    <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
 
   </select>
 </td>
@@ -1282,7 +1300,7 @@ onChange={(e) => {
      
               </div>
               <div colSpan="2" className="px-6 py-3 text-right  font-medium text-gray-500 uppercase tracking-wider" style={{ borderTopWidth: '2px', width: '100%', display: 'block' }}>
-          Total Amount: ${  (selectedEmployee.others.reduce((acc, employee) => acc +  parseInt(employee.amount,10), 0)).toLocaleString()}
+              لمبلغ الإجمالي: ${  (selectedEmployee.others.reduce((acc, employee) => acc +  parseInt(employee.amount,10), 0)).toLocaleString()}
         </div>
                       {!showAddRowOther? (
                         <>
@@ -1290,7 +1308,7 @@ onChange={(e) => {
                           onClick={handleAddRowOther}
                           className="button-white  mt-5 mr-5"
                         >
-                          Add Other
+                        إضافة شيء آخر
                         </button>
                          {selectedEmployee.others !=orginal.others && (
                          <>
@@ -1299,14 +1317,14 @@ onChange={(e) => {
                      
                            className="button-blue  mt-5"
                          >
-                          submit Changes
+                         تقديم التغييرات
                          </button>
                          <button
                            onClick={()=> setSelectedEmployee(orginal)}
                      
-                           className="bg-gray-500 text-black-500  font-bold mt-5 ml-5 border rounded-lg px-5 py-2"
+                           className="bg-gray-500 text-black-500  font-bold mt-5 mr-5 border rounded-lg px-5 py-2"
                          >
-                          Cancel Changes
+                   إلغاء التغييرات
                          </button>
                          </> )}  
                         </>
@@ -1317,47 +1335,47 @@ onChange={(e) => {
                 onClick={handleSaveOther}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
               >
-                Save
+    حفظ
               </button>
               <button
                 onClick={handleCancelAddOtherRow}
                 className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               >
-                Cancel
+           إلغاء
               </button></>
                       )}
-                                                    <button      className="button-excel  ml-5 absolute right-4 top-2" onClick={()=>exportToExcel(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'payouts')}>Import</button>
+                                                    <button      className="button-excel  mr-5 absolute left-4 top-2" onClick={()=>exportToExcel(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'payouts')}>تحميل</button>
 
             </div>
-            <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
-              <h3 className="text-lg font-bold mb-4">Commission</h3>
+            <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8 relative" style={{ width: 'calc(100% - 24px)' }}>
+              <h3 className="text-lg font-bold mb-4">عمولة</h3>
               <div className="table-container " style={{  overflowY: 'auto', maxHeight: '200px', width:'100%'}}>
                 <table className="w-full min-w-full divide-y divide-gray-200" id='commission'>
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        description
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Total amount
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       commission rate
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       commission in Tl
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       payout type
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       date
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                       action
-                      </th>
-                    </tr>
-                  </thead>
+                <thead className="bg-gray-50">
+  <tr>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      الوصف
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      الإجمالي
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      نسبة العمولة
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      العمولة بالليرة التركية
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      نوع الدفع
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      التاريخ
+    </th>
+    <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      الإجراءات
+    </th>
+  </tr>
+</thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                   {selectedEmployee.commissions.map((commission,index) => (
 
@@ -1386,9 +1404,9 @@ onChange={(e) => {
     
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(commission.status)}`}
   >
-    <option value="">payout type</option>
-    <option value="bank">Bank</option>
-    <option value="cash">Cash</option>
+  <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
  
 
   </select></td>
@@ -1397,8 +1415,8 @@ onChange={(e) => {
 <td className="px-6 py-4 whitespace-nowrap align-center justify-center">
 <div className="flex  justify-center">
           
-         {!commission.removed ?(<button className="px-3 py-1 button-red rounded mr-2"  onClick={()=>handleRemove(commission,selectedEmployee.commissions,`commissions`)}>Remove</button>):
-         (<button className="px-3 py-1 button-red-removed rounded mr-2"  disabled={true}>Removed</button>)   }
+         {!commission.removed ?(<button className="px-3 py-1 button-red rounded mr-2"  onClick={()=>handleRemove(commission,selectedEmployee.commissions,`commissions`)}>إزالة</button>):
+         (<button className="px-3 py-1 button-red-removed rounded ml-2"  disabled={true}>تمت الإزالة</button>)   }
      
             </div>
 
@@ -1452,9 +1470,9 @@ onChange={(e) => {
     
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(newCommissionDetails.status)}`}
   >
-    <option value="">payout type</option>
-    <option value="cash">Cash</option>
-    <option value="bank">Bank</option>
+  <option value="">نوع الدفع</option>
+    <option value="bank">بنك</option>
+    <option value="cash">نقداً</option>
    
 
   </select>
@@ -1481,7 +1499,7 @@ onChange={(e) => {
  
               </div>
               <div colSpan="2" className="px-6 py-3 text-right pr-10  font-medium text-gray-500 uppercase tracking-wider" style={{ borderTopWidth: '2px', width: '100%', display: 'block' }}>
-          Total Commissions: ${  (selectedEmployee.commissions.reduce((acc, employee) => acc +  parseInt((employee.amount*employee.rate)/100,10), 0)).toLocaleString()}
+              إجمالي العمولات: ${  (selectedEmployee.commissions.reduce((acc, employee) => acc +  parseInt((employee.amount*employee.rate)/100,10), 0)).toLocaleString()}
         </div>
       
             
@@ -1491,7 +1509,7 @@ onChange={(e) => {
                           onClick={handleAddRowCommission}
                           className="button-white  mt-5 mr-5"
                         >
-                          Add Commission
+                    ضافة عمولة
                         </button>
                         {selectedEmployee.commissions !=orginal.commissions && ( 
                         <>
@@ -1500,14 +1518,14 @@ onChange={(e) => {
                            
                            className="button-blue  mt-5"
                          >
-                          submit Changes
+                    قديم التغييرات
                          </button>
                                      <button
                                      onClick={()=> setSelectedEmployee(orginal)}
                                
-                                     className="bg-gray-500 text-black-500  font-bold mt-5 ml-5 border rounded-lg px-5 py-2"
+                                     className="bg-gray-500 text-black-500  font-bold mt-5 mr-5 border rounded-lg px-5 py-2"
                                    >
-                                    Cancel Changes
+                           إلغاء التغييرات
                                    </button>
                                    </>)}
                         </>
@@ -1518,17 +1536,17 @@ onChange={(e) => {
                 onClick={handleSaveCommission}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
               >
-                Save
+حفظ
               </button>
               <button
                 onClick={handleCancelAddRow}
                 className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               >
-                Cancel
+               إلغاء
               </button></>
                   
                   )}
-                              <button      className="button-excel  ml-5 absolute right-4 top-2" onClick={()=>exportToExcel(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'commission')}>Import</button>
+                              <button      className="button-excel  mr-5 absolute left-4 top-2" onClick={()=>exportToExcel(selectedCoach.nameandsurname,startDate.toLocaleDateString(),endDate.toLocaleDateString(),'commission')}>تحميل</button>
             </div>
       
 
@@ -1612,101 +1630,87 @@ trainer:{},
 
     return    (
       <div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10" style={{ height: '100%' }}>
-        <button onClick={handleClose} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+        <button onClick={handleClose} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
   
         <div className="w-2/6 h-full bg-white border rounded-lg flex flex-col justify-start items-start">
-          <div className='flex'>
-            <h2 className="text-xl font-bold ml-4 mt-4 mb-6">Add PayOut</h2>
-            <div className='ml-72'/>
-            <div className="mt-4">
-          
-            </div>
-          </div>
-          {/* Form inputs */}
-          <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
-            <div className="ml-4 grid grid-cols-1 gap-4">
-            <div className="flex flex-col">
-                <strong>Date</strong>
-  
-  
-      <DatePicker
-     selected={reservation.date.seconds?new Date(reservation.date.toDate()):reservation.date}
-  
-        onChange={(date) => {
-          setReservation({ ...reservation, date: date })
-        // Close calendar after date selection
-        }}
-  
-    className='rounded-lg flex flex-col w-full'
-    calendarClassName='flex flex-start'
-      /> 
-    
-              </div>
-              <div className="flex flex-col">
-                <strong>Select a Coach</strong>      
-              <select
-
-  onChange={(e) => setReservation(prevReservation => ({
-    ...prevReservation,
-    trainer: e.target.value,
-  }))
-  }
-  
-  className='rounded-lg flex flex-col w-full'
->
-        <option value="">Select a Coach</option>
-        { trainers.map((user) => (
-          <option key={user.id} value={user.id}>
-            {user.nameandsurname}
-          </option>
-        ))}
-      </select>  
-      </div>
-  <div className="flex flex-col">
-              <strong>Payment</strong>
-              <select
-      name="payment"
-      value={reservation.payment}
-      onChange={handleInputChange}
-      className="rounded-lg"
-    >
-  
-      <option value="cash">
-          Cash
-        </option>
-        <option  value="bank">
-          Bank Transfer
-        </option>
-    </select>
+  <div className='flex'>
+    <h2 className="text-xl font-bold mr-4 mt-4 mb-6">إضافة دفعة</h2>
+    <div className='mr-72'/>
+    <div className="mt-4">
+      
     </div>
-    <div className="flex flex-col">
-              <strong>Amount</strong>
-              <input
+  </div>
+  {/* Form inputs */}
+  <div className="p-6 mt-4 border rounded-lg mr-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
+    <div className="mr-4 grid grid-cols-1 gap-4">
+      <div className="flex flex-col">
+        <strong>التاريخ</strong>
+        <DatePicker
+          selected={reservation.date.seconds ? new Date(reservation.date.toDate()) : reservation.date}
+          onChange={(date) => {
+            setReservation({ ...reservation, date: date })
+            // إغلاق التقويم بعد تحديد التاريخ
+          }}
+          className='rounded-lg flex flex-col w-full'
+          calendarClassName='flex flex-start'
+        />
+      </div>
+      <div className="flex flex-col">
+        <strong>اختر مدربًا</strong>
+        <select
+          onChange={(e) => setReservation(prevReservation => ({
+            ...prevReservation,
+            trainer: e.target.value,
+          }))}
+          className='rounded-lg flex flex-col w-full'
+        >
+          <option value="">اختر مدربًا</option>
+          { trainers.map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.nameandsurname}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="flex flex-col">
+        <strong>الدفع</strong>
+        <select
+          name="payment"
+          value={reservation.payment}
+          onChange={handleInputChange}
+          className="rounded-lg"
+        >
+          <option value="cash">نقدًا</option>
+          <option value="bank">تحويل بنكي</option>
+        </select>
+      </div>
+      <div className="flex flex-col">
+        <strong>المبلغ</strong>
+        <input
           className="rounded-lg"
           type="text"
           name="amount"
           value={reservation.amount}
           onChange={handleInputChange}
         />
-  
-    </div>
-    <div className="flex flex-col">
-        <label className="font-semibold mb-2">Payout Type</label>
-        <div  className="flex justify-center">
+      </div>
+      <div className="flex flex-col">
+        <label className="font-semibold mb-2">نوع الدفع</label>
+        <div className="flex justify-center">
           <label className="inline-block mr-4">
             <input
               type="radio"
               name="payOutType"
               value="extraHours"
               checked={bookingType === 'extraHours'}
-              onChange={(e) =>{ handleBookingTypeChange('extraHours');handleInputChange(e)}}
+              onChange={(e) => { handleBookingTypeChange('extraHours'); handleInputChange(e) }}
               className="mr-2"
             />
-            Extra Hour
+            ساعة إضافية
           </label>
           <label className="inline-block">
             <input
@@ -1714,48 +1718,45 @@ trainer:{},
               name="payOutType"
               value="extraClass"
               checked={bookingType === 'extraClass'}
-              onChange={(e) => {handleBookingTypeChange('extraClass');handleInputChange(e)}}
+              onChange={(e) => { handleBookingTypeChange('extraClass'); handleInputChange(e) }}
               className="mr-2"
             />
-           Extra  Class
+            صف إضافي
           </label>
-          <label className="inline-block ml-2">
+          <label className="inline-block mr-2">
             <input
               type="radio"
               name="payOutType"
               value="other"
               checked={bookingType === 'other'}
-              onChange={(e) => {handleBookingTypeChange('other');handleInputChange(e)}}
+              onChange={(e) => { handleBookingTypeChange('other'); handleInputChange(e) }}
               className="mr-2"
             />
-            Other
+            آخر
           </label>
         </div>
-        
       </div>
       {bookingType === 'other' && (
         <>
-            <div className="flex flex-col">
-              <strong>Other:</strong>
-              <input
-          className="rounded-lg"
-          type="text"
-          name="type"
-          value={reservation.type}
-          onChange={handleInputChange}
-        />
-  
-    </div>
+          <div className="flex flex-col">
+            <strong>آخر:</strong>
+            <input
+              className="rounded-lg"
+              type="text"
+              name="type"
+              value={reservation.type}
+              onChange={handleInputChange}
+            />
+          </div>
         </>
       )}
-                <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
-        Submit
+      <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
+        إرسال
       </button>
-            </div>
-    
-          </div>
+    </div>
+  </div>
+</div>
 
-        </div>
 
       </div>
     )
@@ -1945,44 +1946,46 @@ const handleEyeClick = (employee) => {
     <div className="container mx-auto h-full mt-10">
 <div className="flex items-center justify-between">
   <div>
-    <h2 className="text-3xl font-bold mb-10 ml-2">PayOuts</h2>
+    <h2 className="text-3xl font-bold mb-10 mr-2">المدفوعات</h2>
   </div>
   <div>
-    <button className="text-blue-500 text-2xl" onClick={addNewMatch}>Add PayOut</button>
+    <button className="text-blue-500 text-2xl" onClick={addNewMatch}>إضافة مدفوعة</button>
   </div>
 </div>
 
     <div className="flex   p-3 mt-5 shadow-3xl flex-col  ">
     <div className="flex flex-row justify-center rid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5  w-full  mb-5  ">
-     <Card title={'Total PayOuts'} data={`$ ${expenses.totalExpenses.toFixed(2)}`} subtitle={`with total of ${expenses.expenses.length} PayOut`} icon={<Wallet size={32} color="#0E2433" className="text-gray-600" /> }/>
-       <Card title={'Average Coaches attendance'} data={`${status.averageAttendance.toFixed(2)} hours`} subtitle={`with total of  ${status.averageAttendance*trainers.length} Hours`} icon={    <Clock9  size={32}  color="#0E2433" className="text-gray-600" />}/>
-      <Card title={'total classs Hours '} data={`${status.totalClassesHours.toFixed(2) } Hours`}  icon={   <Clock11  size={32}  color="#0E2433" className="text-gray-600" /> }/>  
+     <Card title={' إجمالي المدفوعات'} data={`$ ${expenses.totalExpenses.toFixed(2)}`} subtitle={`بإجمالي ${expenses.expenses.length} دفعة`} icon={<Wallet size={32} color="#0E2433" className="text-gray-600" /> }/>
+       <Card title={'متوسط حضور'} data={`${status.averageAttendance.toFixed(2)} ساعة`} subtitle={`بإجمالي ${status.averageAttendance * trainers.length} ساعة`} icon={    <Clock9  size={32}  color="#0E2433" className="text-gray-600" />}/>
+      <Card title={'إجمالي ساعات الصفوف'} data={`${status.totalClassesHours.toFixed(2)} ساعة`}  icon={   <Clock11  size={32}  color="#0E2433" className="text-gray-600" /> }/>  
         {/* <Card title={'Re'} data={`$ ${status.totalRefund.toFixed(2)}`} subtitle={`TotalExpenses`} icon={   <Banknote size={32}  color="#0E2433" className="text-gray-600" /> }/> */}
       </div>
       <div className="flex border-opacity-50 rounded-lg bg-white border flex-col py-5 px-5">
       <AttendanceChart trainersData={trainers} />
       <div className="flex  border-opacity-50 rounded-lg bg-white border">
         
-        <table className="w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                #
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-             Coach
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                Salary type
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                Salary 
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                Action
-              </th>
-            </tr>
-          </thead>
+      <table className="w-full divide-y divide-gray-200">
+  <thead className="bg-gray-50">
+    <tr>
+      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+        #
+      </th>
+      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+      مُعَلِّم
+      </th>
+      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+        نوع الراتب
+      </th>
+      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+        الراتب
+      </th>
+      <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+        الإجراءات
+      </th>
+    </tr>
+  </thead>
+
+
           <tbody className="bg-white divide-y divide-gray-200">
             {trainers.map(transaction => (
               <tr key={transaction.id}>

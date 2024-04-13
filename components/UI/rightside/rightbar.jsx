@@ -29,37 +29,37 @@ const Rightbar = () => {
 
 
     const [noteList, setNoteList] = useState([
-        {
+      {
           id: 1,
-          content: "Contact HubbTennis Academy for partnership opportunities.",
-          category: "Partnership",
+          content: "الاتصال بأكاديمية هاب تنس لفرص الشراكة.",
+          category: "شراكة",
           date: "2024-04-03"
-        },
-        {
+      },
+      {
           id: 2,
-          content: "Research top tennis academies in Europe for coaching techniques.",
-          category: "Research",
+          content: "البحث عن أفضل أكاديميات التنس في أوروبا لتقنيات التدريب.",
+          category: "بحث",
           date: "2024-04-03"
-        },
-        {
+      },
+      {
           id: 3,
-          content: "Attend a workshop on sports psychology for tennis players.",
-          category: "Training",
+          content: "حضور ورشة عمل حول علم النفس الرياضي للاعبي التنس.",
+          category: "تدريب",
           date: "2024-04-03"
-        },
-        {
+      },
+      {
           id: 4,
-          content: "Update website with new training programs for juniors.",
-          category: "Website",
+          content: "تحديث الموقع الإلكتروني ببرامج تدريب جديدة للأطفال.",
+          category: "موقع الويب",
           date: "2024-04-03"
-        },
-        {
+      },
+      {
           id: 5,
-          content: "Schedule a meeting with players to discuss tournament strategy.",
-          category: "Strategy",
+          content: "جدولة اجتماع مع اللاعبين لمناقشة استراتيجية البطولة.",
+          category: "استراتيجية",
           date: "2024-04-03"
-        }
-      ])
+      }
+  ]);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -78,58 +78,60 @@ const Rightbar = () => {
       const [modalIsOpen, setModalIsOpen] = useState(false);
     
       const {courts,trainers,trainees}=useAuth() 
-  return (
-    <div className={styles.container}>
-              <div className={styles.item}>
-        <div className={styles.text}>
-        <span className={styles.notification}>Today's Events</span>
-        <FullCalendar
-  plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
-  initialView="timeGridDay" // Show one day view
-  headerToolbar={{
-    start: '',
-    center: 'title',
-    end: ''
-  }}
-  events={events}
-  slotMinTime="09:00:00"
-  slotMaxTime="22:00:00"
-  slotDuration="00:30:00"
-  headerToolbarCenterTitleStyle={{ fontSize: '16px' }}
-  selectable={true} // Allow selecting time slots
-        select={(info) => {
-          // When a time slot is selected, set the start time in the reservation and open the modal
-          setReservation((prevReservation) => ({
+      return (
+        <div className={styles.container}>
+            <div className={styles.item}>
+                <div className={styles.text}>
+                    <span className={styles.notification}>أحداث اليوم</span>
+                    <FullCalendar
+    plugins={[timeGridPlugin, interactionPlugin, listPlugin]}
+    initialView="timeGridDay" // عرض يوم واحد
+    headerToolbar={{
+        start: '',
+        center: 'title',
+        end: ''
+    }}
+    events={events}
+    slotMinTime="09:00:00"
+    slotMaxTime="22:00:00"
+    slotDuration="00:30:00"
+    headerToolbarCenterTitleStyle={{ fontSize: '16px' }}
+    selectable={true} // السماح باختيار فترات زمنية
+    select={(info) => {
+        // عند تحديد فترة زمنية، قم بتعيين الوقت البدء في الحجز وفتح النافذة المنبثقة
+        setReservation((prevReservation) => ({
             ...prevReservation,
             startTime: new Date(info.start),
-            date:new Date(info.start)
-          }));
-          setModalIsOpen(true);
-        }}
-      />
-  {modalIsOpen && (
-        <MatchDetails  setI={setRender}i={render} courts={courts} setShowModal={setModalIsOpen} setReservation={setReservation} reservationDetails={reservation} trainees={trainees} trainers={trainers}/>
-      )}
+            date: new Date(info.start)
+        }));
+        setModalIsOpen(true);
+    }}
+    direction="rtl"
+    locale="ar-dz" // تحديد اتجاه العرض من اليمين إلى اليسار
+/>
+                    {modalIsOpen && (
+                        <MatchDetails setI={setRender} i={render} courts={courts} setShowModal={setModalIsOpen} setReservation={setReservation} reservationDetails={reservation} trainees={trainees} trainers={trainers} />
+                    )}
+                </div>
+            </div>
+            <div className={styles.item}>
+                <div className={styles.bgContainer}>
+                    {/* <Image className={styles.bg} src="/astronaut.png" alt="" fill /> */}
+                </div>
+                <div className={styles.text}>
+                    <span className={styles.notification}>ملاحظات</span>
+                    <div>
+                        <ul style={{ listStyleType: 'none', padding: '0' }}>
+                            {noteList.map((note, index) => (
+                                <li key={index} style={{ marginBottom: '5px', borderBottom: '1px solid #ccc', paddingBottom: '5px' }}>{note.content}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div className={styles.item}>
-        <div className={styles.bgContainer}>
-          {/* <Image className={styles.bg} src="/astronaut.png" alt="" fill /> */}
-        </div>
-        <div className={styles.text}>
-          <span className={styles.notification}>Notes</span>
-          <div>
-          <ul style={{ listStyleType: 'none', padding: '0' }}>
-            {noteList.map((note, index) => (
-              <li key={index} style={{ marginBottom: '5px', borderBottom: '1px solid #ccc', paddingBottom: '5px' }}>{note.content}</li>
-            ))}
-          </ul>
-        </div>
-        </div>
-      </div>
-
-    </div>
-  );
+    );
+    
 };
 
 export default Rightbar;

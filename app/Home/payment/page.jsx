@@ -105,15 +105,15 @@ name:'',description:''})
 
     return    (
       <div className="fixed inset-0 h-full flex bg-gray-600 bg-opacity-50 justify-end items-center overflow-scroll mb-10" style={{ height: '100%' }}>
-        <button onClick={handleClose} className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
+        <button onClick={handleClose} className="absolute top-0 left-0 m-3 text-gray-500 hover:text-gray-700 focus:outline-none">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
   
-        <div className="w-2/6 h-full bg-white border rounded-lg flex flex-col justify-start items-start">
+        <div className="w-2/6 h-full bg-white border rounded-lg flex flex-col justify-start items-start pr-4">
           <div className='flex'>
-            <h2 className="text-xl font-bold ml-4 mt-4 mb-6">Invoices Billing</h2>
+            <h2 className="text-xl font-bold ml-4 mt-4 mb-6">فاتورة جديدة</h2>
             <div className='ml-72'/>
             <div className="mt-4">
           
@@ -121,144 +121,131 @@ name:'',description:''})
           </div>
           {/* Form inputs */}
           <div className="p-6 mt-4 border rounded-lg ml-4 mr-4 mb-8" style={{ width: 'calc(100% - 24px)' }}>
-            <div className="ml-4 grid grid-cols-1 gap-4">
-            <div className="flex flex-col">
-                <strong>Date</strong>
-  
-  
-      <DatePicker
-     selected={reservation.date.seconds?new Date(reservation.date.toDate()):reservation.date}
-  
-        onChange={(date) => {
-          setReservation({ ...reservation, date: date })
-        // Close calendar after date selection
-        }}
-  
-    className='rounded-lg flex flex-col w-full'
-    calendarClassName='flex flex-start'
-      /> 
-    
-              </div>
-          
-              <div className="flex flex-col">
-                <strong>Consumer</strong>   
-                <AutosuggestComponent trainers={trainers} setReservation={setReservation} reservation={reservation} name={reservation.name} field={"name"}
-         />
-      </div>
+          <div className="ml-4 grid grid-cols-1 gap-4">
   <div className="flex flex-col">
-              <strong>Payment</strong>
-              <select
+    <strong>التاريخ</strong>
+    <DatePicker
+      selected={reservation.date.seconds ? new Date(reservation.date.toDate()) : reservation.date}
+      onChange={(date) => {
+        setReservation({ ...reservation, date: date })
+      }}
+      className='rounded-lg flex flex-col w-full'
+      calendarClassName='flex flex-start'
+    />
+  </div>
+
+  <div className="flex flex-col">
+    <strong>المستهلك</strong>
+    <AutosuggestComponent trainers={trainers} setReservation={setReservation} reservation={reservation} name={reservation.name} field={"name"} />
+  </div>
+
+  <div className="flex flex-col">
+    <strong>الدفع</strong>
+    <select
       name="payment"
       value={reservation.payment}
       onChange={handleInputChange}
       className="rounded-lg"
     >
-  
-      <option value="cash">
-          Cash
-        </option>
-        <option  value="card">
-          Card
-        </option>
+      <option value="cash">نقدي</option>
+      <option value="card">بطاقة</option>
     </select>
-    </div>
-    <div className="flex flex-col">
-              <strong>Status</strong>
-              <select
+  </div>
+
+  <div className="flex flex-col">
+    <strong>الحالة</strong>
+    <select
       name="status"
       value={reservation.status}
       onChange={handleInputChange}
       className="rounded-lg"
     >
-  
-      <option value="paid">
-         Paid
-        </option>
-        <option  value="not paid">
-         Not paid
-        </option>
+      <option value="paid">مدفوع</option>
+      <option value="not paid">غير مدفوع</option>
     </select>
-    </div>
-    <div className="flex flex-col">
-              <strong>Price</strong>
-              <input
-          className="rounded-lg"
-          type="text"
-          name="price"
-          value={reservation.price}
-          onChange={handleInputChange}
+  </div>
+
+  <div className="flex flex-col">
+    <strong>السعر</strong>
+    <input
+      className="rounded-lg"
+      type="text"
+      name="price"
+      value={reservation.price}
+      onChange={handleInputChange}
+    />
+  </div>
+
+  <div className="flex flex-col">
+    <label className="font-semibold mb-2">نوع الحجز</label>
+    <div className="flex justify-center">
+      <label className="inline-block mr-4">
+        <input
+          type="radio"
+          name="bookingType"
+          value="match"
+          checked={bookingType === 'match'}
+          onChange={() => handleBookingTypeChange('match')}
+          className="mr-2"
         />
-  
+        ملعب
+      </label>
+      <label className="inline-block">
+        <input
+          type="radio"
+          name="bookingType"
+          value="class"
+          checked={bookingType === 'class'}
+          onChange={() => handleBookingTypeChange('class')}
+          className="mr-2"
+        />
+        فصل
+      </label>
+      <label className="inline-block">
+        <input
+          type="radio"
+          name="bookingType"
+          value="other"
+          checked={bookingType === 'other'}
+          onChange={() => handleBookingTypeChange('other')}
+          className="ml-2"
+        />
+        آخر
+      </label>
     </div>
-    <div className="flex flex-col">
-        <label className="font-semibold mb-2">Booking Type</label>
-        <div  className="flex justify-center">
-          <label className="inline-block mr-4">
-            <input
-              type="radio"
-              name="bookingType"
-              value="match"
-              checked={bookingType === 'match'}
-              onChange={() => handleBookingTypeChange('match')}
-              className="mr-2"
-            />
-            Court
-          </label>
-          <label className="inline-block">
-            <input
-              type="radio"
-              name="bookingType"
-              value="class"
-              checked={bookingType === 'class'}
-              onChange={() => handleBookingTypeChange('class')}
-              className="mr-2"
-            />
-            Class
-          </label>
-          <label className="inline-block">
-            <input
-              type="radio"
-              name="bookingType"
-              value="other"
-              checked={bookingType === 'other'}
-              onChange={() => handleBookingTypeChange('other')}
-              className="ml-2"
-            />
-            Other
-          </label>
-        </div>
-        
-      </div>
-      {bookingType === 'other' && (
-        <>
-            <div className="flex flex-col">
-              <strong>Other:</strong>
-              <input
+  </div>
+
+  {bookingType === 'other' && (
+    <>
+      <div className="flex flex-col">
+        <strong>آخر:</strong>
+        <input
           className="rounded-lg"
           type="text"
           name="type"
           value={reservation.type}
           onChange={handleInputChange}
         />
-  
-    </div>
-        </>
-      )}
-          <div className="flex flex-col">
-              <strong>Description</strong>
-              <input
-          className="rounded-lg"
-          type="text"
-          name="description"
-          value={reservation.description}
-          onChange={handleInputChange}
-        />
-  
-    </div>
-                <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
-        Submit
-      </button>
-            </div>
+      </div>
+    </>
+  )}
+
+  <div className="flex flex-col">
+    <strong>الوصف</strong>
+    <input
+      className="rounded-lg"
+      type="text"
+      name="description"
+      value={reservation.description}
+      onChange={handleInputChange}
+    />
+  </div>
+
+  <button type="submit" onClick={handleSubmit} className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4">
+    إرسال
+  </button>
+</div>
+
     
           </div>
 
@@ -274,7 +261,7 @@ const StraightAnglePieChart = ({data}) => (
 
 
     <div className='flex flex-col w-full self-center justify-center'>
-    <h2 className="text-3xl font-bold mb-10 ml-2">Invoicess Types</h2>
+    <h2 className="text-3xl font-bold mb-10 ml-2">نوع الفواتير</h2>
     <ResponsiveContainer width="40%" height={400} className='flex flex-col w-full self-center justify-center'>
     <BarChart data={data} >
  
@@ -639,12 +626,12 @@ const exportToExcelSalary = (from,to,tableName) => {
     <div className="container mx-auto h-full mt-10">
 <div className="flex items-center justify-between">
   <div>
-    <h2 className="text-3xl font-bold mb-10 ml-2">Invoicess</h2>
+    <h2 className="text-3xl font-bold mb-10 ml-2">فواتير</h2>
   </div>
   <div className='flex flex-row'>
   <div className='flex flex-row self-end px-4'>
             <div>
-             <strong className='mr-2 mt-4 mb-6'>from : </strong>
+             <strong className='mr-2 mt-4 mb-6'>من : </strong>
                   <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
@@ -658,7 +645,7 @@ const exportToExcelSalary = (from,to,tableName) => {
             </div>
       
             <div>
-             <strong className='ml-2 mt-4 mb-6'>to :</strong>
+             <strong className='ml-2 mt-4 mb-6'>إلى:</strong>
       <DatePicker
         selected={endDate}
         onChange={(date) => setEndDate(date)}
@@ -672,16 +659,16 @@ const exportToExcelSalary = (from,to,tableName) => {
       />
       </div>
     </div>
-    <button className="text-blue-500 text-2xl" onClick={addNewMatch}>Add Invoices</button>
+    <button className="text-blue-500 text-2xl" onClick={addNewMatch}>إضافة فاتورة</button>
   </div>
 </div>
 
     <div className="flex    rounded-lg mt-5 shadow-3xl flex-col  shadow-3xl overflow-x-auto w-full ">
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 mb-5 self-center">
-        <Card title={'Overall Balance'} data={`$ ${status.overallBalance.toFixed(2)}`} subtitle={`${status.performanceChange.toFixed(2)}% from last month`} icon={<Wallet size={32} color="#0E2433" className="text-gray-600" /> }/>
-        <Card title={'Highest Paying Day'} data={status.highestPaymentDay &&(`${status?.highestPaymentDay?.toLocaleDateString()}`)} subtitle={`with amout of $ ${status.highestPayment.toFixed(2)}`} icon={    <BadgeDollarSign  size={32}  color="#0E2433" className="text-gray-600" />}/>
-        <Card title={'Refund'} data={`$ ${status.totalRefund.toFixed(2)}`} subtitle={`Total Refunds`} icon={   <RefreshCcw  size={32}  color="#0E2433" className="text-gray-600" /> }/>
-        <Card title={'Expenses'} data={`$ ${status.totalRefund.toFixed(2)}`} subtitle={`TotalExpenses`} icon={   <Banknote size={32}  color="#0E2433" className="text-gray-600" /> }/>
+    <Card title={'الرصيد الإجمالي'} data={`$ ${status.overallBalance.toFixed(2)}`} subtitle={`${status.performanceChange.toFixed(2)}% من الشهر الماضي`} icon={<Wallet size={32} color="#0E2433" className="text-gray-600" />}/>
+<Card title={'أعلى يوم دفع'} data={status.highestPaymentDay && (`${status?.highestPaymentDay?.toLocaleDateString()}`)} subtitle={`بمبلغ $ ${status.highestPayment.toFixed(2)}`} icon={<BadgeDollarSign  size={32}  color="#0E2433" className="text-gray-600" />}/>
+<Card title={'إرجاع'} data={`$ ${status.totalRefund.toFixed(2)}`} subtitle={`مجموع الإرجاعات`} icon={<RefreshCcw  size={32}  color="#0E2433" className="text-gray-600" />}/>
+<Card title={'النفقات'} data={`$ ${status.totalRefund.toFixed(2)}`} subtitle={`النفقات الإجمالية`} icon={<Banknote size={32}  color="#0E2433" className="text-gray-600" />}/>
 
       {/*  */}
 
@@ -689,32 +676,32 @@ const exportToExcelSalary = (from,to,tableName) => {
     
       <div className="flex overflow-x-auto border bg-white flex-col p-4 rounded-lg relative">
       <StraightAnglePieChart data={status.data}/>
-      <button      className="button-excel  ml-5 absolute right-6 top-4" onClick={()=>exportToExcelSalary(startDate.toLocaleDateString(),endDate.toLocaleDateString(),'receipts')}>Import</button>
+      <button      className="button-excel  ml-5 absolute left-6 top-4" onClick={()=>exportToExcelSalary(startDate.toLocaleDateString(),endDate.toLocaleDateString(),'receipts')}>تحميل</button>
 
         <table className="w-full divide-y divide-gray-200" id='receipts'>
           <thead className="bg-gray-50">
             <tr>
-            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                #
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-              Invoices Date
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                name
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                Amout
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-               Status
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-              type
-              </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"   >
-                Download Invoices
-              </th>
+            <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  #
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  تاريخ الفواتير
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الاسم
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  المبلغ
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  الحالة
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  النوع
+</th>
+<th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+  تحميل الفواتير
+</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -735,9 +722,9 @@ const exportToExcelSalary = (from,to,tableName) => {
     id='cssassas'
     className={`rounded-lg w-full px-3 py-2 border-none focus:outline-none ${getStatusColorClass(transaction.status)}`}
   >
-    <option value="">Unknown</option>
-    <option value="paid">Paid</option>
-    <option value="not paid">Not paid</option>
+    <option value="">غير معروف</option>
+<option value="paid">مدفوعة</option>
+<option value="not paid">غير مدفوعة</option>
    
 
   </select></td> 
